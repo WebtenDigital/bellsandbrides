@@ -16,7 +16,7 @@ export const getAllPosts=async function(){
 }
 
 export const getPostsByCategory=async function(category:string){
-    return await db.posts.findMany({
+    return await db.posts.findFirst({
         where: {
             category: category.toLowerCase(),
             // featured: '1'
