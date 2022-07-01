@@ -24,13 +24,19 @@ export const loader:LoaderFunction=async ({request})=>{
 
         if(user?.ceremony){
             // get the posts that belong to the category
-            const posts=await getPostsByCategory(user.ceremony?user.ceremony.toLowerCase():"wedding");
+            const posts=await getPostsByCategory(user.ceremony.toLowerCase());
             return json({
                 data: {
                     user: user,
                     posts: posts
                 }
             });
+        }
+        else{
+            return json({
+                user: user,
+                posts: []
+            })
         }
     }
     else {
