@@ -36,3 +36,15 @@ model vendor_categories {
   category               String                   @db.VarChar(200)
   user_vendor_categories user_vendor_categories[]
 }
+
+model posts {
+  id       Int       @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  title    String?   @db.VarChar(500)
+  markdown String?   @db.LongText
+  slug     String?   @unique(map: "slug_UNIQUE") @db.VarChar(500)
+  image    String?   @db.VarChar(1000)
+  author   String?   @default("Martin Ripper") @db.VarChar(100)
+  date     DateTime? @db.Date
+  category String?   @db.VarChar(100)
+  featured String?   @db.TinyText
+}

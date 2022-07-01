@@ -1,4 +1,4 @@
-import { users } from "@prisma/client";
+import { posts, users } from "@prisma/client";
 import { json, LoaderFunction, redirect } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import CTA from "~/components/dashboard/CTA";
@@ -9,6 +9,7 @@ import Nav from "~/components/Nav";
 import { db } from "~/utils/db.server";
 import { storage } from "~/utils/session";
 import dashimages from "~/utils/dashimages";
+import { getPostsByCategory } from "~/utils/post.server";
 
 export const loader:LoaderFunction=async ({request})=>{
     const session=await storage.getSession(request.headers.get("Cookie"));
@@ -23,11 +24,16 @@ export const loader:LoaderFunction=async ({request})=>{
             }
         });
 
-        return json({
-            data: {
-                user: user
-            }
-        });
+        if(user?.ceremony){
+            // get the posts that belong to the category
+            const posts=await getPostsByCategory(user.ceremony.toLowerCase());
+            return json({
+                data: {
+                    user: user,
+                    posts: posts
+                }
+            });
+        }
     }
     else {
         return redirect('/myaccount')
@@ -37,6 +43,7 @@ export const loader:LoaderFunction=async ({request})=>{
 type LoaderData={
     data: {
         user: users
+        posts:posts[]
     }
 }
 
@@ -68,6 +75,7 @@ export default function Dashboard() {
     const loaderdata:LoaderData=useLoaderData();
     const currentuser=loaderdata.data.user;
     const loggedinstatus=loaderdata.data.user?true:false
+    const posts=loaderdata.data.posts;
 
     return (
         <main className="bg-gray-50 min-h-screen pb-72">
@@ -134,10 +142,32 @@ export default function Dashboard() {
                         <div className="pt-1"><CTA type="emptywitharrow" text="Add Items" url="/shop" bordercolor="peach"/></div>
                     </div>
                 </div>
-                
 
+                <div id="spacer" className="py-8"></div>
+
+                {/* Ideas and Advice */}
+                <div>
+                    <Heading type="sub" text="Ideas and Advice"/>
+                    <div className="pt-2 pb-2"><Sentence text="Get expert advice on how to best plan for your special day."/></div>
+                    {
+                        posts.map(post=>{
+                            return (
+                                <Link to={`/blog/${post.slug}`}><div className="my-4 py-2 px-2 flex items-center gap-2 bg-gray-100 rounded-xl shadow-md">
+                                    <div className="w-4/12"><img src={dashimages.photography} className="rounded-3xl"/></div>
+                                    <div className="w-8/12">
+                                        <h4 className="text-[10px] text-gray-400 font-bold uppercase">{post.category?post.category:""}</h4>
+                                        <h2 className="py-1 text-gray-600 font-bold leading-tight">{post.title}</h2>
+                                        <CTA type="arrownoborder" text="Read Article" url={`/blog/${post.slug}`}/>
+                                    </div>
+                                </div></Link>
+                            )
+                        })
+                    }
+                </div>
+                {/* <div className="flex justify-end"><CTA type="empty" text="Read Articles" url={`/blog/categories/${currentuser.ceremony}`} bordercolor="peach"/></div> */}
+                
                 {/* mobile footer */}
-                <DashFooter type="main"/>
+                <DashFooter type="main" routename="My Function"/>
             </div>
         </main>
     )
