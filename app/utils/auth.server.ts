@@ -120,14 +120,14 @@ export const login=async (form:LoginForm)=>{
         if(!user){
             return json({
                 error: "user not found",
-                message: "Email not found.💀 Try again or sign up."
+                errormessage: "Email not found.💀 Try again or sign up."
             });
         }
         //if user exists but password is wrong
         else if(user && !await bcrypt.compare(form.password, user.password)){
             return json({
                 error: "wrong password",
-                message: "Password is invalid.💀 Try again or click forgot password."
+                errormessage: "Password is invalid.💀 Try again or click forgot password."
             });   
         }
         //if there are no errors
