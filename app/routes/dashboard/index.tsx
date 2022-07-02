@@ -153,7 +153,7 @@ export default function Dashboard() {
                 <div>
                     <Heading type="sub" text="Ideas and Advice"/>
                     <div className="pt-2 pb-2"><Sentence text="Get expert advice on how to best plan for your special day."/></div>
-                    {
+                    {/* {
                         posts.map(post=>{
                             return (
                                 <Link to={`/blog/${post.slug}`}><div className="my-4 py-2 px-2 flex items-center gap-2 bg-gray-100 rounded-xl shadow-md">
@@ -166,7 +166,7 @@ export default function Dashboard() {
                                 </div></Link>
                             )
                         })
-                    }
+                    } */}
                 </div>
                 {/* <div className="flex justify-end"><CTA type="empty" text="Read Articles" url={`/blog/categories/${currentuser.ceremony}`} bordercolor="peach"/></div> */}
             </div>
