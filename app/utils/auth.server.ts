@@ -108,7 +108,25 @@ export const register=async (form:SignUpForm)=>{
 export const login=async (form:LoginForm)=>{
     //login logic here
     //check if the form values exist
-    if(form.email&&form.password){
+    if(!form.email&&form.password){
+        return (json({
+            errormessage: "Please enter an email 📧🤌",
+            // fields: {email: form.email, password: form.password},
+        }));
+    }
+    else if(form.email&&!form.password){
+        return (json({
+            errormessage: "Please enter a password 🗝️🤌",
+            // fields: {email: form.email, password: form.password},
+        }));
+    }
+    else if(!form.email&&!form.password){
+        return (json({
+            errormessage: "Please enter an email and password 🗝️🤌",
+            // fields: {email: form.email, password: form.password},
+        }));
+    }
+    else if(form.email&&form.password){
         //first, check that the email exists
         const user=await db.users.findUnique({
             where: {
@@ -134,7 +152,7 @@ export const login=async (form:LoginForm)=>{
         else{
             return createUserSession(user.id.toString(), '/dashboard');
         }        
-    }    
+    }
 }
 
 export const createUserSession=async(userId:string, redirectTo:string)=>{

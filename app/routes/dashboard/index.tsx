@@ -8,6 +8,7 @@ import { db } from "~/utils/db.server";
 import { storage } from "~/utils/session";
 import dashimages from "~/utils/dashimages";
 import { getPostsByCategory } from "~/utils/post.server";
+import DashFooter from "~/components/dashboard/DashFooter";
 
 export const loader:LoaderFunction=async ({request})=>{
     const session=await storage.getSession(request.headers.get("Cookie"));
@@ -156,7 +157,7 @@ export default function Dashboard() {
                     {
                         posts.map(post=>{
                             return (
-                                <Link to={`/blog/${post.slug}`}><div className="my-4 py-2 px-2 flex items-center gap-2 bg-gray-100 rounded-xl shadow-md">
+                                <Link to={`/blog/${post.slug}`}><div className="my-4 py-2 px-2 flex items-center gap-3 bg-gray-50 rounded-xl shadow-md">
                                     <div className="w-4/12"><img src={dashimages.photography} className="rounded-3xl"/></div>
                                     <div className="w-8/12">
                                         <h4 className="text-[10px] text-gray-400 font-bold uppercase">{post.category?post.category:""}</h4>
@@ -170,6 +171,7 @@ export default function Dashboard() {
                 </div>
                 {/* <div className="flex justify-end"><CTA type="empty" text="Read Articles" url={`/blog/categories/${currentuser.ceremony}`} bordercolor="peach"/></div> */}
             </div>
+            <DashFooter type="main" routename={'dashboard'}/>
         </main>
     )
 }

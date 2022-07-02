@@ -3,7 +3,7 @@ import { mainDashMenu } from "~/utils/allmenus"
 
 type FooterProps={
     type: string
-    routename: "My Function"|"Vendor Manager"|"Registry"|"Manage Account"
+    routename: "dashboard"|"vendors"|"registry"|"account"
 }
 
 function setDashMenu(routename:string){
