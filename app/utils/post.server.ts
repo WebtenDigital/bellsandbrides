@@ -1,4 +1,3 @@
-import { json } from "@remix-run/node";
 import { db } from "./db.server"
 
 export const getPost=async (slug:string)=>{

@@ -1,4 +1,4 @@
-import { json, redirect } from "@remix-run/node";
+import { json, redirect, Session } from "@remix-run/node";
 import { db } from "./db.server";
 import { LoginForm, SignUpForm } from "./types.server";
 import bcrypt from 'bcryptjs'
@@ -166,4 +166,34 @@ export const createUserSession=async(userId:string, redirectTo:string)=>{
         }
     }); 
 
+}
+
+export const getUser=async function(session:Session){
+    if(session.has('userId')){
+        const sessionId:string=session.get('userId').toString();
+
+        const user=await db.users.findUnique({
+            where: {
+                id: parseInt(sessionId)
+            }
+        });
+        
+        return user;
+    }
+}
+
+export const getCeremony=async function(session:Session){
+    // check if the session has the 'userId' key and get its value and set it as the sessionId
+   const user=await getUser(session);
+
+   return user?.ceremony;
+
+}
+
+export const endSession=async (session:Session)=>{
+    return redirect('myaccount', {
+        headers: {
+            "Set-Cookie": await storage.destroySession(session)
+        }
+    })
 }

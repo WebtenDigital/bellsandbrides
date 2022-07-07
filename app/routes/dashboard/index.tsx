@@ -4,46 +4,36 @@ import { Link, useLoaderData } from "@remix-run/react";
 import CTA from "~/components/dashboard/CTA";
 import Heading from "~/components/dashboard/Heading";
 import Sentence from "~/components/dashboard/Sentence";
-import { db } from "~/utils/db.server";
 import { storage } from "~/utils/session";
 import dashimages from "~/utils/dashimages";
 import { getPostsByCategory } from "~/utils/post.server";
 import DashFooter from "~/components/dashboard/DashFooter";
+import { getCeremony, getUser } from "~/utils/auth.server";
 
 export const loader:LoaderFunction=async ({request})=>{
     const session=await storage.getSession(request.headers.get("Cookie"));
+
+    // get user
+    const theuser=await getUser(session);
     
-    if(session.has('userId')){
-        const sessionId:string=session.get('userId');
+    // get ceremony
+    const ceremony=await getCeremony(session);
 
-        // now query the database for a user with the corresponding ID
-        const user=await db.users.findUnique({
-            where: {
-                id: parseInt(sessionId)
+    // get posts by category
+    const posts=await getPostsByCategory(ceremony?ceremony:"");
+
+    if(theuser){
+        return json({
+            data: {
+                user: theuser,
+                posts: posts
             }
-        });
-
-        if(user?.ceremony){
-            // get the posts that belong to the category
-            // const posts=await getPostsByCategory(user.ceremony.toLowerCase());
-            const posts=await getPostsByCategory('wedding');
-            return json({
-                data: {
-                    user: user,
-                    posts: posts
-                }
-            });
-        }
-        else{
-            return json({
-                user: user,
-                posts: []
-            })
-        }
+        })
     }
-    else {
+    else{
         return redirect('/myaccount')
-     }
+    }
+    
 }
 
 type LoaderData={
@@ -93,17 +83,19 @@ export default function Dashboard() {
                 </div>
 
                 {/* Add Date -- this disappears once the date has been added */}
-                <div className="pt-2">
-                    <Heading type="sub" text={`Have you set a date for your ${currentuser.ceremony}?`}/>
-                    <div id="spacer" className="py-1"></div>
-                    <div className="relative bg-pink-300 px-2 pt-2 pb-4 rounded-xl shadow-xl">
-                        <div className="pb-5 px-2"><Sentence text="Start by adding the date for your function" className="text-white font-medium"/></div>
-                        <div className="flex justify-end"><CTA type="filled" url="/dashboard/account" text="Add Date"/></div>
-                        <div className="absolute top-8 left-6 -rotate-12"><img src={dashimages.calendar} className="h-24 w-24"/></div>
+                {currentuser.ceremony_date?<div></div>:<div>
+                    <div className="pt-2">
+                        <Heading type="sub" text={`Have you set a date for your ${currentuser.ceremony}?`}/>
+                        <div id="spacer" className="py-1"></div>
+                        <div className="relative bg-pink-300 px-2 pt-2 pb-4 rounded-xl shadow-xl">
+                            <div className="pb-5 px-2"><Sentence text="Start by adding the date for your function" className="text-white font-medium"/></div>
+                            <div className="flex justify-end"><CTA type="filled" url="/dashboard/account/eventdetails#date" text="Add Date"/></div>
+                            <div className="absolute top-8 left-6 -rotate-12"><img src={dashimages.calendar} className="h-24 w-24"/></div>
+                        </div>
                     </div>
-                </div>
 
-                <div id="spacer" className="py-10"></div>
+                    <div id="spacer" className="py-10"></div>
+                </div>}
 
                 {/* Your Vendor Team */}
                 <div>

@@ -3,13 +3,15 @@ type SubLink={
     url: string
 }
 
-type MenuLink={
+export type MenuLink={
     name: string
     url: string
     sublinks?: SubLink[]
+    icon?: JSX.Element
 }
 
-export const lgMenu:MenuLink[]=[
+// lg main menu
+export const MainMenu:MenuLink[]=[
     {
         name:"Planner",
         url: '/dashboard',
@@ -26,25 +28,33 @@ export const lgMenu:MenuLink[]=[
                 name: "Registry",
                 url: "/dashboard/registry"
             }
-        ]
+        ],
+        icon: <svg className="fill-gray-700 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356.526 356.526"><path d="m218.255 113.943 29.936-39.527c2.168-2.864 1.855-7.075-.716-9.587L183.992 2.82C182.659 1.519 180.183 0 177.588 0c-2.624 0-5.105 1.554-6.432 2.884l-62.169 62.309c-2.536 2.541-2.841 6.636-.71 9.525l29.147 39.525c-48.697 16.945-83.745 63.304-83.745 117.701 0 68.695 55.888 124.583 124.584 124.583s124.584-55.888 124.584-124.583c0-54.715-35.453-101.303-84.592-118.001zm-39.992 212.583c-52.154 0-94.584-42.43-94.584-94.583 0-52.154 42.43-94.584 94.584-94.584s94.584 42.43 94.584 94.584c0 52.153-42.43 94.583-94.584 94.583z"/></svg>
     },
     {
         name:"Vendors",
-        url: '/vendors'
+        url: '/vendors',
+        icon: <svg className="fill-gray-500 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356.526 356.526"><path d="m218.255 113.943 29.936-39.527c2.168-2.864 1.855-7.075-.716-9.587L183.992 2.82C182.659 1.519 180.183 0 177.588 0c-2.624 0-5.105 1.554-6.432 2.884l-62.169 62.309c-2.536 2.541-2.841 6.636-.71 9.525l29.147 39.525c-48.697 16.945-83.745 63.304-83.745 117.701 0 68.695 55.888 124.583 124.584 124.583s124.584-55.888 124.584-124.583c0-54.715-35.453-101.303-84.592-118.001zm-39.992 212.583c-52.154 0-94.584-42.43-94.584-94.583 0-52.154 42.43-94.584 94.584-94.584s94.584 42.43 94.584 94.584c0 52.153-42.43 94.583-94.584 94.583z"/></svg>
     },
     {
         name:"Ideas",
-        url: '/blog'
+        url: '/blog',
+        icon: <svg className="fill-gray-500 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356.526 356.526"><path d="m218.255 113.943 29.936-39.527c2.168-2.864 1.855-7.075-.716-9.587L183.992 2.82C182.659 1.519 180.183 0 177.588 0c-2.624 0-5.105 1.554-6.432 2.884l-62.169 62.309c-2.536 2.541-2.841 6.636-.71 9.525l29.147 39.525c-48.697 16.945-83.745 63.304-83.745 117.701 0 68.695 55.888 124.583 124.584 124.583s124.584-55.888 124.584-124.583c0-54.715-35.453-101.303-84.592-118.001zm-39.992 212.583c-52.154 0-94.584-42.43-94.584-94.583 0-52.154 42.43-94.584 94.584-94.584s94.584 42.43 94.584 94.584c0 52.153-42.43 94.583-94.584 94.583z"/></svg>
     },
     {
         name:"Bells Stories",
-        url: '/stories'
+        url: '/stories',
+        icon: <svg className="fill-gray-500 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356.526 356.526"><path d="m218.255 113.943 29.936-39.527c2.168-2.864 1.855-7.075-.716-9.587L183.992 2.82C182.659 1.519 180.183 0 177.588 0c-2.624 0-5.105 1.554-6.432 2.884l-62.169 62.309c-2.536 2.541-2.841 6.636-.71 9.525l29.147 39.525c-48.697 16.945-83.745 63.304-83.745 117.701 0 68.695 55.888 124.583 124.584 124.583s124.584-55.888 124.584-124.583c0-54.715-35.453-101.303-84.592-118.001zm-39.992 212.583c-52.154 0-94.584-42.43-94.584-94.583 0-52.154 42.43-94.584 94.584-94.584s94.584 42.43 94.584 94.584c0 52.153-42.43 94.583-94.584 94.583z"/></svg>
     },
     {
         name:"Shop",
-        url: '/shop'
+        url: '/shop',
+        icon: <svg className="fill-gray-500 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356.526 356.526"><path d="m218.255 113.943 29.936-39.527c2.168-2.864 1.855-7.075-.716-9.587L183.992 2.82C182.659 1.519 180.183 0 177.588 0c-2.624 0-5.105 1.554-6.432 2.884l-62.169 62.309c-2.536 2.541-2.841 6.636-.71 9.525l29.147 39.525c-48.697 16.945-83.745 63.304-83.745 117.701 0 68.695 55.888 124.583 124.584 124.583s124.584-55.888 124.584-124.583c0-54.715-35.453-101.303-84.592-118.001zm-39.992 212.583c-52.154 0-94.584-42.43-94.584-94.583 0-52.154 42.43-94.584 94.584-94.584s94.584 42.43 94.584 94.584c0 52.153-42.43 94.583-94.584 94.583z"/></svg>
     }
 ]
+
+// mobile main menu
+export const mobileMainMenu=[]
 
 type DashMenuItem={
     name: "dashboard"|"vendors"|"registry"|"account"
@@ -52,6 +62,7 @@ type DashMenuItem={
     url: string
 }
 
+// dashboard menu
 export const mainDashMenu:DashMenuItem[]=[
     {
         name: "dashboard",
@@ -72,5 +83,103 @@ export const mainDashMenu:DashMenuItem[]=[
         name: "account",
         icon: <svg className="fill-gray-500 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 262.394 262.394"><path d="M245.63 103.39h-9.91a107.445 107.445 0 0 0-10.955-26.432l7.015-7.015c6.546-6.546 6.546-17.159 0-23.705l-15.621-15.621c-6.546-6.546-17.159-6.546-23.705 0l-7.015 7.015a107.484 107.484 0 0 0-26.432-10.955v-9.914C159.007 7.505 151.502 0 142.244 0h-22.091c-9.258 0-16.763 7.505-16.763 16.763v9.914a107.474 107.474 0 0 0-26.431 10.954l-7.016-7.015c-6.546-6.546-17.159-6.546-23.705.001l-15.62 15.621c-6.546 6.546-6.546 17.159 0 23.705l7.014 7.014a107.452 107.452 0 0 0-10.955 26.433h-9.914c-9.257 0-16.762 7.505-16.762 16.763v22.09c0 9.258 7.505 16.763 16.762 16.763h9.914a107.494 107.494 0 0 0 10.956 26.433l-7.015 7.015c-6.546 6.546-6.546 17.159 0 23.705l15.621 15.621c6.546 6.546 17.159 6.546 23.705 0l7.016-7.016a107.438 107.438 0 0 0 26.431 10.955v9.913c0 9.258 7.505 16.763 16.763 16.763h22.091c9.258 0 16.763-7.505 16.763-16.763v-9.913a107.487 107.487 0 0 0 26.432-10.956l7.016 7.017c6.546 6.546 17.159 6.546 23.705 0l15.621-15.621a16.762 16.762 0 0 0 0-23.706l-7.016-7.016a107.484 107.484 0 0 0 10.955-26.432h9.91c9.258 0 16.763-7.505 16.763-16.763v-22.09c-.001-9.257-7.506-16.762-16.764-16.762zm-114.432 87.804c-33.083 0-59.998-26.915-59.998-59.997 0-33.083 26.915-59.998 59.998-59.998s59.998 26.915 59.998 59.998c0 33.082-26.915 59.997-59.998 59.997z"/><path d="M131.198 101.199c-16.541 0-29.998 13.457-29.998 29.998 0 16.54 13.457 29.997 29.998 29.997s29.998-13.457 29.998-29.997c0-16.541-13.457-29.998-29.998-29.998z"/></svg>,
         url: "/dashboard/account",
+    },
+]
+
+// dashboard categories menus
+export const dashboardaccountmenu:MenuLink[]=[
+    {
+        name: "Personal Information",
+        url: "/dashboard/account/personal-info"
+    },
+    {
+        name: "Ceremony Details",
+        url: "/dashboard/account/ceremony-details"
+    },
+    {
+        name: "Reviews",
+        url: "/dashboard/account/reviews"
+    },
+    {
+        name: "Payment Details",
+        url: "/dashboard/account/payment"
+    },
+    {
+        name: "Email Preferences",
+        url: "/dashboard/account/preferences"
+    }
+]
+
+export const dashboardregistrymenu:MenuLink[]=[
+    {
+        name: "Overview",
+        url: "/dashboard/registry/overview"
+    },
+    {
+        name: "Registry Store",
+        url: "/dashboard/registry/store"
+    },
+    {
+        name: "Manage Registry",
+        url: "/dashboard/registry/manage"
+    },
+    {
+        name: "Gift Tracker",
+        url: "/dashboard/registry/gift-tracker"
+    },
+    {
+        name: "Registry Settings",
+        url: "/dashboard/registry/settings"
+    },
+]
+
+export const dashboardvendormenu:MenuLink[]=[
+    {
+        name: "Photography",
+        url: "/dashboard/vendors/photography"
+    },
+    {
+        name: "Venue",
+        url: "/dashboard/vendors/venue"
+    },
+    {
+        name: "Catering",
+        url: "/dashboard/vendors/catering"
+    },
+    {
+        name: "Decor",
+        url: "/dashboard/vendors/decor"
+    },
+    {
+        name: "Musician",
+        url: "/dashboard/vendors/musician"
+    },
+    {
+        name: "Dressing",
+        url: "/dashboard/vendors/dressing"
+    },
+    {
+        name: "Salon",
+        url: "/dashboard/vendors/salon"
+    },
+    {
+        name: "Transportation",
+        url: "/dashboard/vendors/transportation"
+    },
+    {
+        name: "MC",
+        url: "/dashboard/vendors/mc"
+    },
+    {
+        name: "Ushers",
+        url: "/dashboard/vendors/ushers"
+    },
+    {
+        name: "DJ",
+        url: "/dashboard/vendors/dj"
+    },
+    {
+        name: "Cake",
+        url: "/dashboard/vendors/cake"
     },
 ]

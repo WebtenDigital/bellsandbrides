@@ -1,10 +1,11 @@
+import { Outlet } from "@remix-run/react";
 import DashFooter from "~/components/dashboard/DashFooter";
 
-export default function ManageVendors() {
+export default function VendorsLayout() {
   return (
-    <main>
-        <p>Manage Vendors</p>
+    <div className="mx-2">
+        <Outlet/>
         <DashFooter type="main" routename="vendors"/>
-    </main>
+    </div>
   )
 }

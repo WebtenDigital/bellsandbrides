@@ -7,7 +7,7 @@ function setHeading(type:"main"|"sub", text:string){
   switch(type){
     case 'main':
       return (
-        <h1 className="text-gray-600 text-2xl font-bold">{text}</h1>
+        <h1 className="text-gray-600 text-2xl font-bold capitalize">{text}</h1>
       )
     case 'sub':
       return (
