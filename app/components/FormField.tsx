@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Label from "./Label"
 
 type FormFieldProps={
     type: string
@@ -22,7 +23,7 @@ export default function FormField(props:FormFieldProps){
         <div className="relative">            
             {props.type==="password"?
             <div>
-                <input value={props.value} type={inputtype} name={props.name} placeholder={props.placeholder} required pattern={props.pattern} className={"pl-2 py-2 w-full text-sm border border-gray-300 rounded-xl focus:outline-none focus:invalid:border-red-400 focus:invalid:bg-red-50 "+ props.className}/>
+                <input value={props.value} type={inputtype} name={props.name} placeholder={props.placeholder} required={false} pattern={props.pattern} className={"pl-2 py-2 w-full text-sm border border-gray-300 rounded-xl focus:outline-none focus:invalid:border-red-400 focus:invalid:bg-red-50 "+ props.className}/>
                 {!showpassword&&<button onClick={()=>{setShowPassword(prevstate=>prevstate=!prevstate); setInputType('text');}}><svg xmlns="http://www.w3.org/2000/svg" className="absolute right-3 top-2 h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />

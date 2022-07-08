@@ -27,7 +27,7 @@ export default function CategoryMenu(props:CategoryMenuProps) {
     const dropdownref=useRef<HTMLHeadingElement>(null); //assign the ref to the element--the dropdown menu in this case
 
     useEffect(()=>{
-        function handleClickOutside(event: any){
+        function handleClickOutside(event: any){ //*** fix typescript ***
             if(dropdownref.current&&!dropdownref.current.contains(event.target)){ //2. check that the elemnet that has been clicked is the one contained in the ref
                 setDropDown(false);
             }           
@@ -48,7 +48,7 @@ export default function CategoryMenu(props:CategoryMenuProps) {
                 <button id="category-menu-icon" className="flex items-center gap-3" onClick={()=>{setDropDown(prevstate=>prevstate=!prevstate)}}>
                     <div id="icon"><svg className="h-7 w-7 fill-gray-600" viewBox="0 0 210 210"><path d="M195 0h-20c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V15c0-8.284-6.716-15-15-15zM115 0H95c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V15c0-8.284-6.716-15-15-15zM35 0H15C6.716 0 0 6.716 0 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V15c0-8.284-6.716-15-15-15zM195 160h-20c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15v-20c0-8.284-6.716-15-15-15zM115 160H95c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15v-20c0-8.284-6.716-15-15-15zM35 160H15c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15v-20c0-8.284-6.716-15-15-15zM195 80h-20c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V95c0-8.284-6.716-15-15-15zM115 80H95c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V95c0-8.284-6.716-15-15-15zM35 80H15C6.716 80 0 86.716 0 95v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V95c0-8.284-6.716-15-15-15z"/></svg></div>
                 </button>
-                {showdropdown&&<div ref={dropdownref}  id="category-menu-drop-down" className="absolute top-8 -right-4 z-60 py-4 pl-4 pr-12 bg-gray-100 rounded-lg">
+                {showdropdown&&<div ref={dropdownref}  id="category-menu-drop-down" className="absolute top-8 -right-4 z-50 py-4 pl-4 pr-12 bg-gray-100 rounded-lg">
                     <p className="text-sm text-peach text-center font-semibold uppercase whitespace-nowrap">{props.heading}</p>
                     <div className="pt-3 pb-2"><Separator bordercolor="gray-200"/></div>
                     {

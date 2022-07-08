@@ -89,7 +89,7 @@ export default function Dashboard() {
                         <div id="spacer" className="py-1"></div>
                         <div className="relative bg-pink-300 px-2 pt-2 pb-4 rounded-xl shadow-xl">
                             <div className="pb-5 px-2"><Sentence text="Start by adding the date for your function" className="text-white font-medium"/></div>
-                            <div className="flex justify-end"><CTA type="filled" url="/dashboard/account/ceremony-details#date" text="Add Date"/></div>
+                            <div className="flex justify-end"><CTA type="filled" url="/dashboard/account/personal#date" text="Add Date"/></div>
                             <div className="absolute top-8 left-6 -rotate-12"><img src={dashimages.calendar} className="h-24 w-24"/></div>
                         </div>
                     </div>

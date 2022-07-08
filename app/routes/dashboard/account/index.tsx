@@ -4,7 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 // SERVER
 export const loader:LoaderFunction=async function(){
     // when someone comes to this route, they should be redirected to the information route
-    return redirect('/dashboard/account/personal-info');
+    return redirect('/dashboard/account/personal');
 }
   
 export default function AccountIndex() {

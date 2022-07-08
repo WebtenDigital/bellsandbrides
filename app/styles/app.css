@@ -677,6 +677,14 @@ body {
   top: -2.25rem;
 }
 
+.top-20{
+  top: 5rem;
+}
+
+.top-9{
+  top: 2.25rem;
+}
+
 .z-50{
   z-index: 50;
 }
@@ -711,6 +719,11 @@ body {
 .mx-2{
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+}
+
+.mx-4{
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .mt-2{
@@ -771,6 +784,10 @@ body {
 
 .mt-24{
   margin-top: 6rem;
+}
+
+.block{
+  display: block;
 }
 
 .inline-block{
@@ -1214,6 +1231,10 @@ body {
   padding-left: 0.5rem;
 }
 
+.pl-1{
+  padding-left: 0.25rem;
+}
+
 .pl-6{
   padding-left: 1.5rem;
 }
@@ -1244,10 +1265,6 @@ body {
 
 .pt-0\.5{
   padding-top: 0.125rem;
-}
-
-.pl-1{
-  padding-left: 0.25rem;
 }
 
 .pt-0{
@@ -1302,6 +1319,14 @@ body {
   padding-top: 0.25rem;
 }
 
+.pr-16{
+  padding-right: 4rem;
+}
+
+.pl-14{
+  padding-left: 3.5rem;
+}
+
 .text-center{
   text-align: center;
 }
@@ -1309,6 +1334,11 @@ body {
 .text-sm{
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-xs{
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .text-2xl{
@@ -1319,11 +1349,6 @@ body {
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-xs{
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 
 .text-\[10px\]{
@@ -1371,6 +1396,11 @@ body {
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
+.text-gray-500{
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
 .text-gray-700{
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
@@ -1394,11 +1424,6 @@ body {
 .text-gray-800{
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
-}
-
-.text-gray-500{
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 .text-red-500{

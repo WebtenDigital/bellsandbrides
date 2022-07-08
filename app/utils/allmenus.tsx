@@ -90,11 +90,7 @@ export const mainDashMenu:DashMenuItem[]=[
 export const dashboardaccountmenu:MenuLink[]=[
     {
         name: "Personal Information",
-        url: "/dashboard/account/personal-info"
-    },
-    {
-        name: "Ceremony Details",
-        url: "/dashboard/account/ceremony-details"
+        url: "/dashboard/account/personal"
     },
     {
         name: "Reviews",
