@@ -1,5 +1,5 @@
 import { Link } from '@remix-run/react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import logo from '../images/logo-tp.png'
 import {MainMenu} from '../utils/allmenus'
 import Separator from './Separator'
@@ -10,6 +10,23 @@ type NavProps={
 
 export default function Nav(props:NavProps) {
     const [showdropdown, setShowDropdown]=useState(false);
+
+    // hide menu on click outside
+    const menudropdownref=useRef<HTMLHeadingElement>(null);
+
+    useEffect(()=>{
+        function handleClickOutside(event:any){
+            if(menudropdownref.current&&!menudropdownref.current.contains(event.target)){
+                setShowDropdown(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return ()=>{
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+    }, [menudropdownref]);
 
   return (
     <main className=''>
@@ -27,12 +44,12 @@ export default function Nav(props:NavProps) {
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>                    
                 </button>
-                {showdropdown&&<div id="the-menu-dropdown" className='absolute top-14 right-2 z-50'>
+                {showdropdown&&<div ref={menudropdownref} id="the-menu-dropdown" className='absolute top-14 right-2 z-50'>
                     <div className='w-full pl-6 pr-10 py-4 text-sm bg-gray-100 rounded-lg'>
                         {
                             MainMenu.map(menuitem=>{
                                 return (
-                                    <Link to={menuitem.url}><div className='py-2 flex items-center gap-6'>
+                                    <Link onClick={()=>{setShowDropdown(false)}} to={menuitem.url}><div className='py-2 flex items-center gap-6'>
                                         <div>{menuitem.icon}</div>
                                         <p className='text-gray-600 font-bold'>{menuitem.name}</p>
                                     </div></Link>
