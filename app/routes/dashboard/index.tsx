@@ -9,6 +9,7 @@ import dashimages from "~/utils/dashimages";
 import { getPostsByCategory } from "~/utils/post.server";
 import DashFooter from "~/components/dashboard/DashFooter";
 import { getCeremony, getUser } from "~/utils/auth.server";
+import Spacer from "~/components/Spacer";
 
 export const loader:LoaderFunction=async ({request})=>{
     const session=await storage.getSession(request.headers.get("Cookie"));
@@ -67,11 +68,90 @@ const vendordashcards:VendorCard[]=[
     }
 ]
 
+// info to ask user to fill in
+function missingInfo(user:users, remainingDays:number){
+    if(!user.ceremony_date){
+        return (
+            <div className="pt-2 pb-20">
+                <Heading type="sub" text={`Have you set a date for your ${user.ceremony}?`}/>
+                <div id="spacer" className="py-2"></div>
+                <div className="relative bg-pink-300 px-2 pt-2 pb-4 rounded-xl shadow-xl">
+                    <div className="pb-5 px-2"><Sentence text="Start by adding the date for your function" className="text-white font-medium"/></div>
+                    <div className="flex justify-end"><CTA type="filled" url="/dashboard/account/personal#date" text="Add Date"/></div>
+                    <div className="absolute top-8 left-6 -rotate-12"><img src={dashimages.calendar} className="h-24 w-24"/></div>
+                </div>
+                {/* <Spacer gapsize="20"/> */}
+            </div>
+        )
+    }
+    else if(!user.estimated_guests){
+        return(
+            <div className="pt-2">
+                <Heading type="sub" text={`How many guests will be at your ${user.ceremony}?`}/>
+                <div id="spacer" className="py-2"></div>
+                <div className="relative bg-pink-300 px-2 pt-2 pb-4 rounded-xl shadow-xl">
+                    <div className="pb-6 px-2"><Sentence text="Add the number of guests you expect to attend." className="text-white font-medium"/></div>
+                    <div className="flex justify-end"><CTA type="filled" url="/dashboard/account/personal#guests" text="Add Guests"/></div>
+                    <div className="absolute top-8 left-6"><img src={dashimages.clipboard} className="h-24 w-24 -rotate-12"/></div>
+                </div>
+                <Spacer gapsize="8"/>
+            </div>
+        )
+    }
+    else if(!user.location){
+        return(
+            <div className="pt-2">
+                <Heading type="sub" text={`where will your ${user.ceremony} take place?`}/>
+                <div id="spacer" className="py-2"></div>
+                <div className="relative bg-pink-300 px-2 pt-2 pb-4 rounded-xl shadow-xl">
+                    <div className="pb-6 px-2"><Sentence text="Add the location where the event will take place." className="text-white font-medium"/></div>
+                    <div className="flex justify-end"><CTA type="filled" url="/dashboard/account/personal#location" text="Add Location"/></div>
+                    <div className="absolute top-4 left-6"><img src={dashimages.location} className="h-32 w-32 -rotate-12"/></div>
+                </div>
+                <Spacer gapsize="10"/>
+            </div>
+        )
+    }
+    else{
+        return(
+            <div>
+                {/* Not Done: What happens when time expires */}
+                <div id="spacer" className="py-2"></div>
+                {remainingDays>0?<div className="relative bg-pink-300 px-2 pt-2 pb-6 rounded-xl shadow-xl">
+                    <div className="px-2"><Sentence text="Number of Days Remaining" className="text-white font-medium"/></div>
+                    <div className="w-11/12 flex items-end justify-end text-6xl text-white font-bold">
+                        <p>{remainingDays>0?remainingDays:0}</p>
+                        <p className="mb-2 text-xs text-white uppercase">{remainingDays===1?`day`:remainingDays<1?`days`:`days`}</p>
+                    </div>
+                    <div className="absolute top-9 left-6"><img src={dashimages.clock} className="h-24 w-24 -rotate-12"/></div>
+                </div>
+                :                
+                <div className="relative bg-pink-300 px-2 pt-2 pb-5 rounded-xl shadow-xl">
+                    <div className="px-2"><Sentence text="It's Your Wedding Day. Yaayyyyy" className="text-white font-medium"/></div>
+                    <div className="w-11/12 flex items-end justify-end text-6xl text-white font-bold">
+                        <p>0</p>
+                        <p className="mb-2 text-xs text-white uppercase">days</p>
+                    </div>
+                    <div className="absolute top-9 left-6"><img src={dashimages.dancing} className="h-24 w-24 -rotate-12 rounded-3xl"/></div>
+                </div>}
+                <Spacer gapsize="6"/>
+            </div>
+        )
+    }
+                
+};
+
+
 export default function Dashboard() {
     const loaderdata:LoaderData=useLoaderData();
     const currentuser=loaderdata.data.user;
     // const loggedinstatus=loaderdata.data.user?true:false
     const posts=loaderdata.data.posts;
+
+    // days remaining
+    const today=new Date();
+    const ceremonydate=currentuser.ceremony_date?new Date(currentuser.ceremony_date):new Date();
+    const remainingDays=Math.floor((ceremonydate.getTime()-today.getTime())/(24*60*60*1000));
 
     return (
         <main className="bg-gray-50 min-h-screen pb-72">
@@ -82,20 +162,8 @@ export default function Dashboard() {
                     </div>
                 </div>
 
-                {/* Add Date -- this disappears once the date has been added */}
-                {currentuser.ceremony_date?<div></div>:<div>
-                    <div className="pt-2">
-                        <Heading type="sub" text={`Have you set a date for your ${currentuser.ceremony}?`}/>
-                        <div id="spacer" className="py-1"></div>
-                        <div className="relative bg-pink-300 px-2 pt-2 pb-4 rounded-xl shadow-xl">
-                            <div className="pb-5 px-2"><Sentence text="Start by adding the date for your function" className="text-white font-medium"/></div>
-                            <div className="flex justify-end"><CTA type="filled" url="/dashboard/account/personal#date" text="Add Date"/></div>
-                            <div className="absolute top-8 left-6 -rotate-12"><img src={dashimages.calendar} className="h-24 w-24"/></div>
-                        </div>
-                    </div>
-
-                    <div id="spacer" className="py-10"></div>
-                </div>}
+                {/* Add Date / Add Number of Guests / Add Location / Days Remaining */}
+                {missingInfo(currentuser, remainingDays)}
 
                 {/* Your Vendor Team */}
                 <div>

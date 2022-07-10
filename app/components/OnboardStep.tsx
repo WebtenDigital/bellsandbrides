@@ -1,4 +1,5 @@
 import bells from '../images/bellsandbrides-line-tp.png'
+import ProgressBar from './ProgressBar'
 
 type OnboardProps={
     imageurl: string
@@ -9,8 +10,7 @@ type OnboardProps={
 }
 
 export default function OnboardStep(props:OnboardProps){
-    const x=((100*props.step)/props.totalsteps);
-    const progresspercentage=`${x}%`
+    const progresspercentage=((100*props.step)/props.totalsteps);
 
     return(
         <main className="text-sm">
@@ -20,9 +20,7 @@ export default function OnboardStep(props:OnboardProps){
                 {props.step===4&&<div className='pt-4'></div>}
                 {/* progress bar */}
                 <div id="holder" className="w-10/12 mx-auto">
-                    <div id="outer-bar" className="mt-2 h-1 bg-red-100 rounded-full">
-                        <div id="inner-bar" className="h-1 bg-red-600 rounded-l-full" style={{width:progresspercentage}}></div>
-                    </div>
+                    <ProgressBar progresspercentage={progresspercentage}/>
                     <p className="pt-4 uppercase text-gray-600">Step <span className="font-bold">{props.step}</span> of <span className="font-bold">4</span></p>
                     <div>
                         <img src={bells}/>

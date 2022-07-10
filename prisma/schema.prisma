@@ -28,6 +28,10 @@ model users {
   partnerlastname        String?                  @db.VarChar(200)
   ceremony               String?                  @default("wedding") @db.VarChar(100)
   ceremony_date          DateTime?                @db.Date
+  user_status            String?                  @db.VarChar(100)
+  partner_status         String?                  @db.VarChar(100)
+  location               String?                  @db.VarChar(1000)
+  estimated_guests       String?                  @db.VarChar(200)
   user_vendor_categories user_vendor_categories[]
 }
 
