@@ -37,8 +37,9 @@ model users {
 
 model vendor_categories {
   id                     Int                      @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  category               String                   @db.VarChar(200)
+  category               String                   @unique(map: "category_UNIQUE") @db.VarChar(200)
   user_vendor_categories user_vendor_categories[]
+  vendors                vendors[]
 }
 
 model posts {
@@ -51,4 +52,16 @@ model posts {
   date     DateTime? @db.Date
   category String?   @db.VarChar(100)
   featured String?   @db.TinyText
+}
+
+model vendors {
+  id                Int                @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  category_id       Int?
+  vendor_name       String             @db.VarChar(1000)
+  rating            String?            @db.VarChar(45)
+  business_location String?            @db.VarChar(45)
+  base_price        Int?
+  vendor_categories vendor_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "categoryId")
+
+  @@index([category_id], map: "categoryId_idx")
 }

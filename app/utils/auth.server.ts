@@ -197,3 +197,16 @@ export const endSession=async (session:Session)=>{
         }
     })
 }
+
+export const checkIfLoggedIn=async(session:Session)=>{
+    if(session.has('userId')){
+        const user=await db.users.findUnique({
+            where: {
+                id: parseInt(session.get('userId'))
+            }
+        });
+
+        if(user){return true}
+    }
+    else return false;
+}

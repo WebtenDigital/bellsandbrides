@@ -54,17 +54,17 @@ const vendordashcards:VendorCard[]=[
     {
         imageurl: dashimages.venue,
         categoryname: "Venue",
-        url: "/dashboard/vendors"
+        url: "/vendors?category=venue"
     },
     {
         imageurl: dashimages.photography,
         categoryname: "Photography",
-        url: "/dashboard/vendors"
+        url: "/vendors?category=photography"
     },
     {
         imageurl: dashimages.catering,
         categoryname: "Catering",
-        url: "/dashboard/vendors"
+        url: "/vendors?category=catering"
     }
 ]
 
@@ -185,7 +185,7 @@ export default function Dashboard() {
                             </div>
                             <div id="ctas" className="w-11/12 mx-auto flex justify-between">
                                 <CTA type="empty" url="/dashboard/vendors" text="Manage Vendors" bordercolor="peach"/>
-                                <CTA type="filled" url="dashboard/vendors" text="Discover Vendors"/>
+                                <CTA type="filled" url="/vendors" text="Discover Vendors"/>
                             </div>
                         </div>
                     </div>
