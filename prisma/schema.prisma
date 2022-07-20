@@ -33,13 +33,13 @@ model users {
   location               String?                  @db.VarChar(1000)
   estimated_guests       String?                  @db.VarChar(200)
   user_vendor_categories user_vendor_categories[]
+  user_vendors           user_vendors[]
 }
 
 model vendor_categories {
   id                     Int                      @id @unique(map: "id_UNIQUE") @default(autoincrement())
   category               String                   @unique(map: "category_UNIQUE") @db.VarChar(200)
   user_vendor_categories user_vendor_categories[]
-  vendors                vendors[]
 }
 
 model posts {
@@ -55,13 +55,24 @@ model posts {
 }
 
 model vendors {
-  id                Int                @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  category_id       Int?
-  vendor_name       String             @db.VarChar(1000)
-  rating            String?            @db.VarChar(45)
-  business_location String?            @db.VarChar(45)
+  id                Int            @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  vendor_name       String         @db.VarChar(1000)
+  category          String?        @db.VarChar(100)
+  rating            String?        @db.VarChar(45)
+  business_location String?        @db.VarChar(45)
   base_price        Int?
-  vendor_categories vendor_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "categoryId")
+  slug              String?        @db.VarChar(1000)
+  user_vendors      user_vendors[]
+}
 
-  @@index([category_id], map: "categoryId_idx")
+model user_vendors {
+  id              Int      @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  user_id         Int?
+  vendor_id       Int?
+  vendor_category String?  @db.VarChar(100)
+  users           users?   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "TheUserId")
+  vendors         vendors? @relation(fields: [vendor_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "VendorId")
+
+  @@index([user_id], map: "UserId_idx")
+  @@index([vendor_id], map: "VendorId_idx")
 }

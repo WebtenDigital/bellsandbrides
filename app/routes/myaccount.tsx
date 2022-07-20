@@ -1,5 +1,5 @@
-import { ActionFunction} from "@remix-run/node";
-import { Form, Link, useActionData, useTransition } from "@remix-run/react";
+import { ActionFunction, json, LoaderFunction} from "@remix-run/node";
+import { Form, Link, useActionData, useLoaderData, useTransition } from "@remix-run/react";
 import { useState } from "react";
 import FormField from "~/components/FormField";
 import SuperSpinner from "~/components/SuperSpinner";
@@ -7,11 +7,13 @@ import { login, register } from "~/utils/auth.server";
 import bells from '../images/bellsandbrides-line-tp.png'
 
 //SERVER
+// Action
 export const action:ActionFunction=async ({request})=>{
     const formdata=await request.formData();
     const email=formdata.get("user_email")?.toString();
     const password=formdata.get("user_password")?.toString();
     const formtype=formdata.get("formType")?.toString();
+    const previouspage=formdata.get('previous_page')?.toString();
 
     //if form type is signup, validate, authenticate and add data to database, create session cookie, then redirect
     if(formtype==="register"){
@@ -25,7 +27,11 @@ export const action:ActionFunction=async ({request})=>{
 
     //if form type is login, validate that the user exists, compare the password and then create session cookie, then redirect
     else if(formtype==='login'){
-        const logindata=await login({email:email, password:password}); //login returns json(error, message, submission_status) when error, and simply redirects to /dashboard if no errors
+        const logindata=await login({
+            email: email, 
+            password: password,
+            previouspage: previouspage
+        }); //login returns json(error, message, submission_status) when error, and simply redirects to /dashboard if no errors
         if(logindata){
             return logindata;
         }
@@ -33,16 +39,37 @@ export const action:ActionFunction=async ({request})=>{
     }
     }
 
+// Loader
+export const loader:LoaderFunction=({request})=>{
+    const url=new URL(request.url);
+    const previouspage=url.searchParams.get('from')
+
+
+    return json({
+        data:{
+            previouspage: previouspage===null?'dashboard':previouspage
+        }
+    })
+}
+
 
 type ActionData={
     errormessage: string
     fields?: {email:string, password:string}
 }
 
+type LoaderData={
+    data: {
+        previouspage: string
+    }
+}
+
 
 //CLIENT
 export default function MyAccount() {
     const actiondata:ActionData|undefined=useActionData();
+
+    const loaderdata=useLoaderData<LoaderData>();
 
     const transition=useTransition();
     
@@ -84,6 +111,8 @@ export default function MyAccount() {
             </div>
 
             <Form method="post" noValidate>
+                <input type="hidden" name="previous_page" value={`/${loaderdata.data.previouspage}`}/>
+
                 <FormField
                     type="hidden"                
                     name="formType"

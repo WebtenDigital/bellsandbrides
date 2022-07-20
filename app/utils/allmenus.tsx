@@ -72,7 +72,7 @@ export const mainDashMenu:DashMenuItem[]=[
     {
         name: "vendors",
         icon: <svg className="fill-gray-500 h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M2 0 0 3c0 1.042.23 2 1.75 2S3.497 4 3.5 3l1.25-3H2zm4 0-.75 3c0 1.017.16 2 1.75 2s1.747-1.023 1.75-2L8 0H6zm3.25 0 1.25 3c0 1.023.324 2 1.75 2S14 3.983 14 3l-2-3H9.25zM1 6v8h12V6H1zm3 2h6c.565 0 1 .505 1 1v2H3V9c0-.542.505-1 1-1z"/></svg>,
-        url: "/dashboard/vendors",
+        url: "/dashboard/vendormanager",
     },
     {
         name: "registry",
@@ -132,50 +132,50 @@ export const dashboardregistrymenu:MenuLink[]=[
 export const dashboardvendormenu:MenuLink[]=[
     {
         name: "Photography",
-        url: "/dashboard/vendors/photography"
+        url: "/dashboard/vendormanager/photography"
     },
     {
         name: "Venue",
-        url: "/dashboard/vendors/venue"
+        url: "/dashboard/vendormanager/venue"
     },
     {
         name: "Catering",
-        url: "/dashboard/vendors/catering"
+        url: "/dashboard/vendormanager/catering"
     },
     {
         name: "Decor",
-        url: "/dashboard/vendors/decor"
+        url: "/dashboard/vendormanager/decor"
     },
     {
         name: "Musician",
-        url: "/dashboard/vendors/musician"
+        url: "/dashboard/vendormanager/musician"
     },
     {
         name: "Dressing",
-        url: "/dashboard/vendors/dressing"
+        url: "/dashboard/vendormanager/dressing"
     },
     {
         name: "Salon",
-        url: "/dashboard/vendors/salon"
+        url: "/dashboard/vendormanager/salon"
     },
     {
         name: "Transportation",
-        url: "/dashboard/vendors/transportation"
+        url: "/dashboard/vendormanager/transportation"
     },
     {
         name: "MC",
-        url: "/dashboard/vendors/mc"
+        url: "/dashboard/vendormanager/mc"
     },
     {
         name: "Ushers",
-        url: "/dashboard/vendors/ushers"
+        url: "/dashboard/vendormanager/ushers"
     },
     {
         name: "DJ",
-        url: "/dashboard/vendors/dj"
+        url: "/dashboard/vendormanager/dj"
     },
     {
         name: "Cake",
-        url: "/dashboard/vendors/cake"
+        url: "/dashboard/vendormanager/cake"
     },
 ]

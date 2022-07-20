@@ -128,7 +128,7 @@ export default function Welcome(){
     const actiondata=useActionData();    
 
 
-    const vendors:vendor_categories[]=currentuser.vendorcategories;
+    // const vendors:vendor_categories[]=currentuser.vendorcategories;
     const onboardingtotalsteps=4;
 
     // step One
@@ -267,68 +267,68 @@ export default function Welcome(){
         </div>
     );
 
-    //step 3
-    const [customvendoroptions, setVendorOptions]=useState(vendors.map((vendoritem)=>{
-        switch(vendoritem.category.toLowerCase()){
-            case "photography": case "decor": case "catering": case "venue":
-                return({
-                    category: vendoritem.category,
-                    checkedstatus: true
-                });
-            default:
-                return({
-                    category: vendoritem.category,
-                    checkedstatus: false
-                });
-        }
-    }));
+    //step 3: which vendors
+    // const [customvendoroptions, setVendorOptions]=useState(vendors.map((vendoritem)=>{
+    //     switch(vendoritem.category.toLowerCase()){
+    //         case "photography": case "decor": case "catering": case "venue":
+    //             return({
+    //                 category: vendoritem.category,
+    //                 checkedstatus: true
+    //             });
+    //         default:
+    //             return({
+    //                 category: vendoritem.category,
+    //                 checkedstatus: false
+    //             });
+    //     }
+    // }));
     
-    const stepThree=(
-        <div>
-            <OnboardStep
-            imageurl= {image3}
-            title= "Which vendors will you need?"
-            subtitle= "Choose which vendors you will need for your wedding." 
-            step={3}  
-            totalsteps={onboardingtotalsteps}
-            />
+    // const stepThree=(
+    //     <div>
+    //         <OnboardStep
+    //         imageurl= {image3}
+    //         title= "Which vendors will you need?"
+    //         subtitle= "Choose which vendors you will need for your wedding." 
+    //         step={3}  
+    //         totalsteps={onboardingtotalsteps}
+    //         />
 
-            <div className="w-10/12 mx-auto">
-                <Form method="post" onSubmit={()=>{
-                            setCurrentStep(prevstate=>prevstate+1);
-                        }}>
-                    {
-                        customvendoroptions.map(vendoritem=>{
-                            return(
-                                <button type="button" className="w-full my-4 py-3 px-4 flex items-center gap-4 text-gray-600 text-sm border border-gray-100 rounded-2xl" onClick={()=>{
-                                    setVendorOptions(prevstate=>{
-                                        const updatedarray=prevstate.map(previtem=>{
-                                            if(previtem.category===vendoritem.category){
-                                                previtem.checkedstatus=!previtem.checkedstatus;
-                                            }
-                                            return previtem;
-                                        });
-                                        return updatedarray;
-                                    });
-                                }}>
-                                       <input type="checkbox" name="vendor_checkbox" checked={vendoritem.checkedstatus} value={vendoritem.category} className="accent-peach h-4 w-4 rounded-lg focus:ring-none focus:outline-none"/>
-                                    <p>{vendoritem.category}</p>
-                                </button>
-                            )
-                        })
-                    }
+    //         <div className="w-10/12 mx-auto">
+    //             <Form method="post" onSubmit={()=>{
+    //                         setCurrentStep(prevstate=>prevstate+1);
+    //                     }}>
+    //                 {
+    //                     customvendoroptions.map(vendoritem=>{
+    //                         return(
+    //                             <button type="button" className="w-full my-4 py-3 px-4 flex items-center gap-4 text-gray-600 text-sm border border-gray-100 rounded-2xl" onClick={()=>{
+    //                                 setVendorOptions(prevstate=>{
+    //                                     const updatedarray=prevstate.map(previtem=>{
+    //                                         if(previtem.category===vendoritem.category){
+    //                                             previtem.checkedstatus=!previtem.checkedstatus;
+    //                                         }
+    //                                         return previtem;
+    //                                     });
+    //                                     return updatedarray;
+    //                                 });
+    //                             }}>
+    //                                    <input type="checkbox" name="vendor_checkbox" checked={vendoritem.checkedstatus} value={vendoritem.category} className="accent-peach h-4 w-4 rounded-lg focus:ring-none focus:outline-none"/>
+    //                                 <p>{vendoritem.category}</p>
+    //                             </button>
+    //                         )
+    //                     })
+    //                 }
 
-                    <div className="mt-14 mb-6 flex justify-between">
-                    <StepBackButton handleClick={()=>{setCurrentStep(prevstate=>prevstate-1)}}/>
+    //                 <div className="mt-14 mb-6 flex justify-between">
+    //                 <StepBackButton handleClick={()=>{setCurrentStep(prevstate=>prevstate-1)}}/>
                         
-                        <button type="submit" className="p-3 bg-gray-900 rounded-full">
-                            <StepNextButton arrowcolor="text-white"/>
-                        </button>
-                    </div>           
-                </Form>            
-            </div>
-        </div>
-    );
+    //                     <button type="submit" className="p-3 bg-gray-900 rounded-full">
+    //                         <StepNextButton arrowcolor="text-white"/>
+    //                     </button>
+    //                 </div>           
+    //             </Form>            
+    //         </div>
+    //     </div>
+    // );
     
     // step 4
     const stepFour=(
@@ -394,7 +394,7 @@ export default function Welcome(){
         </div>
     )
     
-    const onboardFormArray:JSX.Element[]=[stepOne, stepTwo, stepThree, stepFour, stepFive];
+    const onboardFormArray:JSX.Element[]=[stepOne, stepTwo, stepFour, stepFive];
 
     return(
     <main className="">

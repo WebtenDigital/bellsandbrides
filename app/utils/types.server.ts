@@ -6,4 +6,5 @@ export type SignUpForm={
 export type LoginForm={
     email: string|undefined
     password: string|undefined
+    previouspage: string|undefined
 }

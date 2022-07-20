@@ -150,7 +150,7 @@ export const login=async (form:LoginForm)=>{
         }
         //if there are no errors
         else{
-            return createUserSession(user.id.toString(), '/dashboard');
+            return createUserSession(user.id.toString(), form.previouspage?form.previouspage:"/dashboard");
         }        
     }
 }

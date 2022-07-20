@@ -142,7 +142,7 @@ function missingInfo(user:users, remainingDays:number){
 };
 
 
-export default function Dashboard() {
+export default function DashboardIndex() {
     const loaderdata:LoaderData=useLoaderData();
     const currentuser=loaderdata.data.user;
     // const loggedinstatus=loaderdata.data.user?true:false
@@ -184,7 +184,7 @@ export default function Dashboard() {
                                 }
                             </div>
                             <div id="ctas" className="w-11/12 mx-auto flex justify-between">
-                                <CTA type="empty" url="/dashboard/vendors" text="Manage Vendors" bordercolor="peach"/>
+                                <CTA type="empty" url="/dashboard/vendormanager" text="Manage Vendors" bordercolor="peach"/>
                                 <CTA type="filled" url="/vendors" text="Discover Vendors"/>
                             </div>
                         </div>
