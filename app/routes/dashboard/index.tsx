@@ -77,7 +77,7 @@ function missingInfo(user:users, remainingDays:number){
                 <div id="spacer" className="py-2"></div>
                 <div className="relative bg-pink-300 px-2 pt-2 pb-4 rounded-xl shadow-xl">
                     <div className="pb-5 px-2"><Sentence text="Start by adding the date for your function" className="text-white font-medium"/></div>
-                    <div className="flex justify-end"><CTA type="filled" url="/dashboard/account/personal#date" text="Add Date"/></div>
+                    <div className="flex justify-end"><CTA type="fillednoarrow" url="/dashboard/account/personal#date" text="Add Date"/></div>
                     <div className="absolute top-8 left-6 -rotate-12"><img src={dashimages.calendar} className="h-24 w-24"/></div>
                 </div>
                 {/* <Spacer gapsize="20"/> */}
@@ -91,7 +91,7 @@ function missingInfo(user:users, remainingDays:number){
                 <div id="spacer" className="py-2"></div>
                 <div className="relative bg-pink-300 px-2 pt-2 pb-4 rounded-xl shadow-xl">
                     <div className="pb-6 px-2"><Sentence text="Add the number of guests you expect to attend." className="text-white font-medium"/></div>
-                    <div className="flex justify-end"><CTA type="filled" url="/dashboard/account/personal#guests" text="Add Guests"/></div>
+                    <div className="flex justify-end"><CTA type="fillednoarrow" url="/dashboard/account/personal#guests" text="Add Guests"/></div>
                     <div className="absolute top-8 left-6"><img src={dashimages.clipboard} className="h-24 w-24 -rotate-12"/></div>
                 </div>
                 <Spacer gapsize="8"/>
@@ -105,7 +105,7 @@ function missingInfo(user:users, remainingDays:number){
                 <div id="spacer" className="py-2"></div>
                 <div className="relative bg-pink-300 px-2 pt-2 pb-4 rounded-xl shadow-xl">
                     <div className="pb-6 px-2"><Sentence text="Add the location where the event will take place." className="text-white font-medium"/></div>
-                    <div className="flex justify-end"><CTA type="filled" url="/dashboard/account/personal#location" text="Add Location"/></div>
+                    <div className="flex justify-end"><CTA type="fillednoarrow" url="/dashboard/account/personal#location" text="Add Location"/></div>
                     <div className="absolute top-4 left-6"><img src={dashimages.location} className="h-32 w-32 -rotate-12"/></div>
                 </div>
                 <Spacer gapsize="10"/>
@@ -185,7 +185,7 @@ export default function DashboardIndex() {
                             </div>
                             <div id="ctas" className="w-11/12 mx-auto flex justify-between">
                                 <CTA type="empty" url="/dashboard/vendormanager" text="Manage Vendors" bordercolor="peach"/>
-                                <CTA type="filled" url="/vendors" text="Discover Vendors"/>
+                                <CTA type="fillednoarrow" url="/vendors" text="Discover Vendors"/>
                             </div>
                         </div>
                     </div>
@@ -203,7 +203,7 @@ export default function DashboardIndex() {
                         <div className="absolute -top-9 right-0 h-48 w-48"><img src={dashimages.soundbar}/></div>
                     </div>
                     <div id="the ctas" className="w-11/12 mx-auto mt-24 flex items-center justify-between">
-                        <CTA type="filled" text="Manage Registry" url="/dashboard/registry"/>
+                        <CTA type="fillednoarrow" text="Manage Registry" url={"/dashboard/registry"}/>
                         <div className="pt-1"><CTA type="emptywitharrow" text="Add Items" url="/shop" bordercolor="peach"/></div>
                     </div>
                 </div>

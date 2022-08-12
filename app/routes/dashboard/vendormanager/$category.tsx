@@ -83,7 +83,7 @@ export default function DynamicCategory() {
 
   return (
     <main>
-        <CategoryMenu for="Vendors" heading="Categories"/>
+        <CategoryMenu for="Vendors" heading="Categories"/> 
         <Spacer gapsize="1"/>
         <div className="bg-white shadow-xl rounded-lg">
             <div className="w-11/12 mx-auto pt-4 pb-8">

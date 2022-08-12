@@ -16,7 +16,7 @@ export default function OnboardStep(props:OnboardProps){
         <main className="text-sm">
             <div className="relative">
                 {props.step!==4&&<div><img src={props.imageurl} className="h-56 w-full object-cover object-top"/>
-                <div className="absolute top-48 h-10 w-full bg-white rounded-t-3xl z-20"></div></div>}
+                <div className="absolute top-48 h-10 w-full bg-white rounded-t-4xl z-20"></div></div>}
                 {props.step===4&&<div className='pt-4'></div>}
                 {/* progress bar */}
                 <div id="holder" className="w-10/12 mx-auto">

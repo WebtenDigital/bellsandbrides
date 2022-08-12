@@ -1,14 +1,14 @@
 import { Link } from "@remix-run/react";
 import { useState, useEffect, useRef } from "react"
-import { dashboardaccountmenu, dashboardregistrymenu, dashboardvendormenu, MenuLink } from "~/utils/allmenus";
+import { dashboardaccountmenu, dashboardregistrymenu, dashboardvendormenu, MenuLink, registrystoremenu } from "~/utils/allmenus";
 import Separator from "../Separator";
 
 type CategoryMenuProps={
-    for: "Account"|"Vendors"|"Registry",
-    heading: "Account Options"|"Categories"|"Registry Options"
+    for: "Account"|"Vendors"|"Registry"|"Registry Store",
+    heading: "Account Options"|"Categories"|"Registry Options"|"Registry Categories"
 }
 
-function setCategoryMenu(type:"Account"|"Vendors"|"Registry"){
+function setCategoryMenu(type:"Account"|"Vendors"|"Registry"|"Registry Store"){
     switch (type){
         case "Account":
             return dashboardaccountmenu;
@@ -16,6 +16,8 @@ function setCategoryMenu(type:"Account"|"Vendors"|"Registry"){
             return dashboardvendormenu;
         case "Registry":
             return dashboardregistrymenu;
+        case "Registry Store":
+            return registrystoremenu;
     }
 }
 

@@ -1,3 +1,5 @@
+import { db } from "./db.server"
+
 type SubLink={
     name: string,
     url: string
@@ -109,15 +111,15 @@ export const dashboardaccountmenu:MenuLink[]=[
 export const dashboardregistrymenu:MenuLink[]=[
     {
         name: "Overview",
-        url: "/dashboard/registry/overview"
-    },
-    {
-        name: "Registry Store",
-        url: "/dashboard/registry/store"
+        url: "/dashboard/registry"
     },
     {
         name: "Manage Registry",
         url: "/dashboard/registry/manage"
+    },
+    {
+        name: "Registry Checklist",
+        url: "/dashboard/registry/checklist"
     },
     {
         name: "Gift Tracker",
@@ -178,4 +180,44 @@ export const dashboardvendormenu:MenuLink[]=[
         name: "Cake",
         url: "/dashboard/vendormanager/cake"
     },
-]
+];
+
+export const registrystoremenu:MenuLink[]=
+[
+    {
+        name: "Electronics",
+        url: "/dashboard/registry/store/electronics"
+    },
+    {
+        name: "Dining Essentials",
+        url: "/dashboard/registry/store/dining-essentials"
+    },
+    {
+        name: "Cleaning",
+        url: "/dashboard/registry/store/cleaning"
+    },
+    {
+        name: "Bedroom Essentials",
+        url: "/dashboard/registry/store/bedroom-essentials"
+    },
+    {
+        name: "Bathroom Essentials",
+        url: "/dashboard/registry/store/bathroom-essentials"
+    },   
+    {
+        name: "Drinkware",
+        url: "/dashboard/registry/store/drinkware"
+    }, 
+    {
+        name: "Home Decor",
+        url: "/dashboard/registry/store/home-decor"
+    },
+    {
+        name: "Kitchen Appliances",
+        url: "/dashboard/registry/store/kitchen-appliances"
+    },
+    {
+        name: "Kitchen Essentials",
+        url: "/dashboard/registry/store/kitchen-essentials"
+    },
+];

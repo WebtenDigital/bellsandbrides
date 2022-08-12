@@ -1,6 +1,6 @@
 import { user_vendors, vendors } from "@prisma/client";
 import { ActionFunction, json, LoaderFunction } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData, useTransition } from "@remix-run/react";
 import { useState } from "react";
 import Heading from "~/components/dashboard/Heading";
 import VendorSearch from "~/components/dashboard/VendorSearch";
@@ -103,6 +103,7 @@ type LoaderData={
 }
 
 export default function Vendors() {
+    const transition=useTransition();
     const loaderdata=useLoaderData<LoaderData>();
     const loggedin=loaderdata.data.loggedin;
     const userVendors=loaderdata.data.userVendors;
@@ -206,6 +207,10 @@ export default function Vendors() {
                     </div>
                 </button>}
             </div>}
+
+            {
+                transition.submission&&<div className="w-7/12 mx-auto py-4 px-4 fixed inset-x-0 bg-green-500 text-sm text-white text-center font-semibold shadow-xl z-10">{`Submitting...`}</div>
+            }
     
     
             {/* VENDOR RESULTS */}
