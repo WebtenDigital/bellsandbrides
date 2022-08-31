@@ -1,6 +1,6 @@
 import { registry_store } from "@prisma/client";
-import { json, LoaderFunction, redirect } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { ActionFunction, json, LoaderFunction, redirect } from "@remix-run/node";
+import { useActionData, useLoaderData, useTransition } from "@remix-run/react";
 import { useState } from "react";
 import CategoryMenu from "~/components/dashboard/CategoryMenu";
 import CTA from "~/components/dashboard/CTA";
@@ -14,6 +14,46 @@ import { db } from "~/utils/db.server";
 import { storage } from "~/utils/session";
 
 // SERVER
+// Action
+export const action:ActionFunction=async({request})=>{
+  const session=await storage.getSession(request.headers.get('Cookie'));
+  const userId=session.get('userId');
+
+  const formdata=await request.formData();
+  const itemId=formdata.get('item_id')?.toString();
+
+  // if item has not beed added already, add item to user_registry_items
+  if(userId&&itemId){
+      const itemexists=await db.user_registry_store.findFirst({
+          where: {
+              registry_item_id: parseInt(itemId)
+          }
+      });
+
+      if(!itemexists){
+          const addtouserregistryitems=await db.user_registry_store.create({
+              data: {
+                  user_id: parseInt(userId),
+                  registry_item_id: parseInt(itemId)
+              }
+          });
+      }
+      else{
+          return json({
+              data: {
+                  message: 'Already added!'
+              }
+          });
+      }
+  }
+  
+  return json({
+      data: {
+
+      }
+  });
+}
+
 // Loader
 export const loader:LoaderFunction=async ({request})=>{
   const session=await storage.getSession(request.headers.get("Cookie"));
@@ -62,9 +102,18 @@ type LoaderData={
   }
 }
 
+type ActionData={
+  data: {
+      message: string
+  }
+}
+
 // CLIENT
 export default function RegistryOverview() {
   const loaderdata=useLoaderData<LoaderData>();
+  const actiondata=useActionData<ActionData>();
+
+  const transition=useTransition();
 
   const registryguideitems:RegistryGuideItem[]=[
     {
@@ -138,13 +187,13 @@ export default function RegistryOverview() {
                 title: "gifts",
                 description: 'From kitchenware, to bathroom essentials, add the things you will need to (officially) start your life together.',
                 imageurl: dashimages.kitchenware,
-                linkurl: '/dashboard/registry/shop'
+                linkurl: '/shop'
               },
               {
                 title: "cash fund",
                 description: 'Have some adventures on your bucketlist? Let your guests know by adding them to your registry.',
                 imageurl: dashimages.venue,
-                linkurl: '/dashboard/registry/shop'
+                linkurl: '/honeymoon'
               }
             ].map(item=>{
               return (
@@ -173,6 +222,11 @@ export default function RegistryOverview() {
           </div>
 
           {/* personalized recommendations */}
+          
+          {
+            transition.submission&&<div className="w-7/12 mx-auto py-4 px-4 inset-x-0 bg-green-500 text-sm text-white text-center font-semibold shadow-xl z-10">{actiondata?.data.message?actiondata.data.message:`Adding to Registry...`}</div>
+          }
+
           <div className="pt-10">
             <Heading type="sub" text="Personalized Recommendations"/>
             <Spacer gapsize="1"/>

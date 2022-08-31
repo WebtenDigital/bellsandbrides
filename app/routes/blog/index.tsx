@@ -1,6 +1,7 @@
 import { posts } from "@prisma/client";
 import { json, LoaderFunction } from "@remix-run/node"
 import { Link, useLoaderData } from "@remix-run/react";
+import { useEffect, useState } from "react";
 import CTA from "~/components/dashboard/CTA";
 import { db } from "~/utils/db.server";
 import { getAllPosts } from "~/utils/post.server";
@@ -26,8 +27,14 @@ export default function Blog() {
 
   const posts=loaderdata.data.posts;
 
+  const [loaded, setLoaded]=useState(false);
+
+  useEffect(()=>{
+    setLoaded(document.readyState==='complete');
+  },[]);
+
   return (
-    <main>
+    !loaded?<div>Page is loading...</div>:<main>
         Bells Blog
         <div>
           <h2>All Posts</h2>

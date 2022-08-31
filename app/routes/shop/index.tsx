@@ -58,13 +58,13 @@ export const loader:LoaderFunction=async({request})=>{
         }
     });
 
-    const userregistryitems=await db.user_registry_store.findMany({
-        where: {
-            user_id: parseInt(userId)
-        }
-    });
+    // const userregistryitems=await db.user_registry_store.findMany({
+    //     where: {
+    //         user_id: parseInt(userId)
+    //     }
+    // });
     
-    console.log("current items:"+userregistryitems.length);
+    // console.log("current items:"+userregistryitems.length);
 
     return json({
         data: {

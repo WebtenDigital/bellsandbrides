@@ -626,6 +626,10 @@ body {
   top: 12rem;
 }
 
+.top-20{
+  top: 5rem;
+}
+
 .left-4{
   left: 1rem;
 }
@@ -702,10 +706,6 @@ body {
   top: -2.25rem;
 }
 
-.top-20{
-  top: 5rem;
-}
-
 .z-50{
   z-index: 50;
 }
@@ -754,11 +754,6 @@ body {
 .mx-4{
   margin-left: 1rem;
   margin-right: 1rem;
-}
-
-.my-20{
-  margin-top: 5rem;
-  margin-bottom: 5rem;
 }
 
 .my-10{
@@ -836,6 +831,10 @@ body {
 
 .mb-10{
   margin-bottom: 2.5rem;
+}
+
+.mt-40{
+  margin-top: 10rem;
 }
 
 .block{
@@ -1379,11 +1378,6 @@ body {
 .py-10{
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
-}
-
-.py-20{
-  padding-top: 5rem;
-  padding-bottom: 5rem;
 }
 
 .pt-1{
