@@ -186,38 +186,94 @@ export const registrystoremenu:MenuLink[]=
 [
     {
         name: "Electronics",
-        url: "/dashboard/registry/store/electronics"
+        url: "/store/electronics"
     },
     {
         name: "Dining Essentials",
-        url: "/dashboard/registry/store/dining-essentials"
+        url: "/store/dining-essentials"
     },
     {
         name: "Cleaning",
-        url: "/dashboard/registry/store/cleaning"
+        url: "/store/cleaning"
     },
     {
         name: "Bedroom Essentials",
-        url: "/dashboard/registry/store/bedroom-essentials"
+        url: "/store/bedroom-essentials"
     },
     {
         name: "Bathroom Essentials",
-        url: "/dashboard/registry/store/bathroom-essentials"
+        url: "/store/bathroom-essentials"
     },   
     {
         name: "Drinkware",
-        url: "/dashboard/registry/store/drinkware"
+        url: "/store/drinkware"
     }, 
     {
         name: "Home Decor",
-        url: "/dashboard/registry/store/home-decor"
+        url: "/store/home-decor"
     },
     {
         name: "Kitchen Appliances",
-        url: "/dashboard/registry/store/kitchen-appliances"
+        url: "/store/kitchen-appliances"
     },
     {
         name: "Kitchen Essentials",
-        url: "/dashboard/registry/store/kitchen-essentials"
+        url: "/store/kitchen-essentials"
     },
+];
+
+// footer links
+export const footerLinks:MenuLink[]=[
+    {
+        name: "About Us",
+        url: "/about",
+    },
+    {
+        name: "Shop",
+        url: "/shop",
+    },
+    {
+        name: "Destination Weddings",
+        url: "/destination-weddings",
+    },
+    {
+        name: "Honeymoon",
+        url: "/honeymoon",
+    },
+    {
+        name: "Advertising",
+        url: "/advertising",
+    },
+    {
+        name: "Help",
+        url: "/help",
+    },
+];
+
+// footer other links
+export const footerOtherLinks:MenuLink[]=[
+    {
+        name: "Privacy",
+        url: "/privacy",
+    },
+    {
+        name: "Cookie Policy",
+        url: "/dashboard/cookies",
+    },
+    {
+        name: "Terms of Use",
+        url: "/dashboard/terms-and-conditions",
+    },
+];
+
+// footer other links
+export const footerVendorLinks:MenuLink[]=[
+    {
+        name: "Register",
+        url: "/vendor-register",
+    },
+    {
+        name: "Support",
+        url: "/vendor-support",
+    }
 ];

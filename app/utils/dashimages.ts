@@ -19,6 +19,12 @@ import tchotchke from '../images/dashboard/tchotchke-tp.png'
 import kitchenappliances from '../images/dashboard/kitchen-appliances-tp.png'
 import diningessentials from '../images/dashboard/dining-essentials-tp.png'
 import kitchenware from '../images/dashboard/kitchenware.jpg'
+import homedecor from '../images/dashboard/home-decor.png'
+import weddingservices from '../images/others/wed-services-tp.png'
+import planningadvice from '../images/others/planning-tp.png'
+import weddingceremony from '../images/others/wedding-ceremony-tp.png'
+import weddingfashion from '../images/others/wedding-fashion.png'
+import destinationweddings from '../images/others/destination-tp.png'
 
 
-export default {kitchenware, bedroomessentials, diningessentials, kitchenappliances, tchotchke, drinkware, washingmachine, box, calendar, venue, catering, photography, pans, soundbar, towels, celebration, clipboard, location, clock, dancing, pillows}
+export default {destinationweddings, weddingfashion, weddingceremony, weddingservices, planningadvice, kitchenware, bedroomessentials, diningessentials, homedecor, kitchenappliances, tchotchke, drinkware, washingmachine, box, calendar, venue, catering, photography, pans, soundbar, towels, celebration, clipboard, location, clock, dancing, pillows}

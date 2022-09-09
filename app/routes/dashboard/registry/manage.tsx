@@ -33,8 +33,16 @@ export const action:ActionFunction=async({request})=>{
 }
 
 // Loader
-export const loader:LoaderFunction=async()=>{
-    const userregistryitems=await db.user_registry_store.findMany();
+export const loader:LoaderFunction=async({request})=>{
+    const session=await storage.getSession(request.headers.get("Cookie"));
+    const sessionId=session.get('userId');
+
+    const userregistryitems=await db.user_registry_store.findMany({
+        where: {
+            user_id: parseInt(sessionId)
+        }
+    });
+    
     const allregistryitems=await db.registry_store.findMany();
 
     const userregistryitemsids=userregistryitems.map(item=>item.registry_item_id);

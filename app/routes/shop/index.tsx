@@ -11,15 +11,16 @@ import { storage } from "~/utils/session";
 // SERVER
 export const action:ActionFunction=async({request})=>{
     const session=await storage.getSession(request.headers.get('Cookie'));
-    const userId=session.get('userId');
+    const sessionId=session.get('userId');
 
     const formdata=await request.formData();
     const itemId=formdata.get('item_id')?.toString();
 
-    // if item has not beed added already, add item to user_registry_items
-    if(userId&&itemId){
+    // if item has not been added already by this user, add item to user_registry_items
+    if(sessionId&&itemId){
         const itemexists=await db.user_registry_store.findFirst({
             where: {
+                user_id: parseInt(sessionId),
                 registry_item_id: parseInt(itemId)
             }
         });
@@ -27,7 +28,7 @@ export const action:ActionFunction=async({request})=>{
         if(!itemexists){
             const addtouserregistryitems=await db.user_registry_store.create({
                 data: {
-                    user_id: parseInt(userId),
+                    user_id: parseInt(sessionId),
                     registry_item_id: parseInt(itemId)
                 }
             });
