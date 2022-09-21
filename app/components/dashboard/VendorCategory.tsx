@@ -2,6 +2,7 @@ import { Link } from "@remix-run/react";
 import Spacer from "../Spacer";
 
 type VendorCategoryProps={
+    // type: "box"|"round"
     categoryname: string
     howmanyvendors: number
 }

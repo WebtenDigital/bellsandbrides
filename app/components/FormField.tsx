@@ -33,7 +33,7 @@ export default function FormField(props:FormFieldProps){
                 </svg></button>}       
             </div>
             :
-            <input onChange={props.handleOnChange} value={props.value} type={props.type} name={props.name} placeholder={props.placeholder} required pattern={props.pattern} className={"pl-2 py-2 w-full text-sm border border-gray-300 rounded-xl focus:outline-none focus:invalid:border-red-400 focus:invalid:bg-red-50 "+ props.className}/>
+            <input onChange={props.handleOnChange} value={props.value} type={props.type} name={props.name} placeholder={props.placeholder} required={props.required===false?false:true} pattern={props.pattern} className={"pl-2 py-2 w-full text-sm border border-gray-300 rounded-xl focus:outline-none focus:invalid:border-red-400 focus:invalid:bg-red-50 "+ props.className}/>
             }
         </div>
 

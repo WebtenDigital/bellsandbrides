@@ -1,23 +1,25 @@
 import { Link } from "@remix-run/react";
 import { useState, useEffect, useRef } from "react"
-import { dashboardaccountmenu, dashboardregistrymenu, dashboardvendormenu, MenuLink, registrystoremenu } from "~/utils/allmenus";
+import { dashboardaccountmenu, dashboardregistrymenu, dashboardvendormenu, mainvendormenu, MenuLink, registrystoremenu } from "~/utils/allmenus";
 import Separator from "../Separator";
 
 type CategoryMenuProps={
-    for: "Account"|"Vendors"|"Registry"|"Registry Store",
+    for: "Account"|"DashVendors"|"Registry"|"Registry Store"|"Vendors",
     heading: "Account Options"|"Categories"|"Registry Options"|"Registry Categories"
 }
 
-function setCategoryMenu(type:"Account"|"Vendors"|"Registry"|"Registry Store"){
+function setCategoryMenu(type:"Account"|"DashVendors"|"Registry"|"Registry Store"|"Vendors"){
     switch (type){
         case "Account":
             return dashboardaccountmenu;
-        case "Vendors":
+        case "DashVendors":
             return dashboardvendormenu;
         case "Registry":
             return dashboardregistrymenu;
         case "Registry Store":
             return registrystoremenu;
+        case "Vendors":
+            return mainvendormenu;
     }
 }
 
@@ -44,9 +46,9 @@ export default function CategoryMenu(props:CategoryMenuProps) {
   return (
     <main className="bg-white shadow-xl rounded-lg">
         <div className="px-4 py-4 flex items-center justify-between">
-            <p className="text-xs text-gray-500 font-bold uppercase">{props.for}</p>
+            <p className="text-xs text-gray-500 font-bold uppercase">{props.for.toLowerCase()==='dashvendors'?"Vendors":props.for}</p>
             <div className="relative flex items-center gap-3">
-                <h4 className="text-xs text-gray-500 font-bold uppercase">Options</h4>
+                <h4 className="text-xs text-gray-500 font-bold uppercase">{props.for.toLowerCase()==='vendors'?"Categories":"Options"}</h4>
                 <button id="category-menu-icon" className="flex items-center gap-3" onClick={()=>{setDropDown(prevstate=>prevstate=!prevstate)}}>
                     <div id="icon"><svg className="h-7 w-7 fill-gray-600" viewBox="0 0 210 210"><path d="M195 0h-20c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V15c0-8.284-6.716-15-15-15zM115 0H95c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V15c0-8.284-6.716-15-15-15zM35 0H15C6.716 0 0 6.716 0 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V15c0-8.284-6.716-15-15-15zM195 160h-20c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15v-20c0-8.284-6.716-15-15-15zM115 160H95c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15v-20c0-8.284-6.716-15-15-15zM35 160H15c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15v-20c0-8.284-6.716-15-15-15zM195 80h-20c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V95c0-8.284-6.716-15-15-15zM115 80H95c-8.284 0-15 6.716-15 15v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V95c0-8.284-6.716-15-15-15zM35 80H15C6.716 80 0 86.716 0 95v20c0 8.284 6.716 15 15 15h20c8.284 0 15-6.716 15-15V95c0-8.284-6.716-15-15-15z"/></svg></div>
                 </button>

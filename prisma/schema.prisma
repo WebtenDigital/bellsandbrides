@@ -7,95 +7,80 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user_vendor_categories {
-  id                 Int                @unique(map: "id_UNIQUE") @default(autoincrement())
-  user_id            Int?
-  vendor_category_id Int?
-  users              users?             @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "UserId")
-  vendor_categories  vendor_categories? @relation(fields: [vendor_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "VendorCategoryId")
-
-  @@index([user_id], map: "UserId_idx")
-  @@index([vendor_category_id], map: "VendorCategoryId_idx")
-}
-
 model users {
-  id                                Int                      @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  email                             String                   @unique(map: "email_UNIQUE") @db.VarChar(200)
-  password                          String                   @db.VarChar(200)
-  firstname                         String?                  @db.VarChar(100)
-  lastname                          String?                  @db.VarChar(200)
-  partnerfirstname                  String?                  @db.VarChar(200)
-  partnerlastname                   String?                  @db.VarChar(200)
-  ceremony                          String?                  @default("wedding") @db.VarChar(100)
-  ceremony_date                     DateTime?                @db.Date
-  user_status                       String?                  @db.VarChar(100)
-  partner_status                    String?                  @db.VarChar(100)
-  location                          String?                  @db.VarChar(1000)
-  estimated_guests                  String?                  @db.VarChar(200)
-  registry_name                     String?                  @db.VarChar(1000)
-  registry_welcome_message          String?                  @db.VarChar(2000)
-  registry_link                     String?                  @db.VarChar(1000)
-  shipping_street_address           String?                  @db.VarChar(1000)
-  shipping_apt_building             String?                  @db.VarChar(1000)
-  shipping_floor_number             String?                  @db.VarChar(100)
-  shipping_additional_location_info String?                  @db.VarChar(1000)
-  shipping_phone_number             String?                  @db.VarChar(1000)
-  user_vendor_categories            user_vendor_categories[]
+  id                                Int            @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  email                             String         @unique(map: "email_UNIQUE") @db.VarChar(100)
+  password                          String?        @db.VarChar(200)
+  firstname                         String?        @db.VarChar(100)
+  lastname                          String?        @db.VarChar(100)
+  partnerfirstname                  String?        @db.VarChar(100)
+  partnerlastname                   String?        @db.VarChar(100)
+  ceremony                          String?        @default("wedding") @db.VarChar(100)
+  ceremony_date                     DateTime?      @db.DateTime(0)
+  user_status                       String?        @db.VarChar(100)
+  partner_status                    String?        @db.VarChar(100)
+  location                          String?        @db.VarChar(100)
+  estimated_guests                  String?        @db.VarChar(100)
+  registry_name                     String?        @db.VarChar(500)
+  registry_welcome_message          String?        @db.VarChar(2000)
+  registry_link                     String?        @db.VarChar(1000)
+  shipping_street_address           String?        @db.VarChar(100)
+  shipping_apt_building             String?        @db.VarChar(100)
+  shipping_floor_number             String?        @db.VarChar(100)
+  shipping_additional_location_info String?        @db.VarChar(100)
+  shipping_phone_number             String?        @db.VarChar(100)
   user_vendors                      user_vendors[]
 }
 
 model vendor_categories {
-  id                     Int                      @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  category               String                   @unique(map: "category_UNIQUE") @db.VarChar(200)
-  user_vendor_categories user_vendor_categories[]
+  id       Int     @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  category String? @unique(map: "category_UNIQUE") @db.VarChar(200)
 }
 
 model posts {
   id       Int       @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  title    String?   @db.VarChar(500)
+  title    String?   @db.VarChar(100)
   markdown String?   @db.LongText
-  slug     String?   @unique(map: "slug_UNIQUE") @db.VarChar(500)
+  slug     String?   @unique(map: "slug_UNIQUE") @db.VarChar(100)
   image    String?   @db.VarChar(1000)
   author   String?   @default("Martin Ripper") @db.VarChar(100)
-  date     DateTime? @db.Date
+  date     DateTime? @db.DateTime(0)
   category String?   @db.VarChar(100)
   featured String?   @db.TinyText
 }
 
 model vendors {
-  id                Int            @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  vendor_name       String         @db.VarChar(1000)
-  category          String?        @db.VarChar(100)
-  rating            String?        @db.VarChar(45)
-  business_location String?        @db.VarChar(45)
+  id                Int     @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  vendor_name       String? @db.VarChar(100)
+  category          String? @db.VarChar(100)
+  rating            String? @db.VarChar(45)
+  business_location String? @db.VarChar(100)
   base_price        Int?
-  slug              String?        @db.VarChar(1000)
-  user_vendors      user_vendors[]
+  slug              String? @db.VarChar(500)
+  featured          Int?    @default(0) @db.TinyInt
 }
 
 model user_vendors {
-  id              Int      @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  id              Int     @id @unique(map: "id_UNIQUE") @default(autoincrement())
   user_id         Int?
   vendor_id       Int?
-  vendor_category String?  @db.VarChar(100)
-  users           users?   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "TheUserId")
-  vendors         vendors? @relation(fields: [vendor_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "VendorId")
+  vendor_category String? @db.VarChar(100)
+  users           users?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "users")
 
-  @@index([user_id], map: "UserId_idx")
-  @@index([vendor_id], map: "VendorId_idx")
+  @@index([user_id], map: "users_idx")
 }
 
 model registry_store {
   id            Int     @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  item_name     String  @db.VarChar(200)
-  item_image    String? @db.VarChar(1000)
-  item_category String  @db.VarChar(200)
-  item_price    Int
-  featured      Int     @db.TinyInt
+  item_name     String? @db.VarChar(200)
+  item_image    String? @db.VarChar(500)
+  item_category String? @db.VarChar(200)
+  item_price    Int?
+  featured      Int?
 }
 
 model user_registry_store {
-  id               Int @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  user_id          Int
-  registry_item_id Int
+  id               Int  @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  user_id          Int?
+  registry_item_id Int?
 }

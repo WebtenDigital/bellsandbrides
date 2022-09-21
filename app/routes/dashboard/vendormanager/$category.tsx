@@ -83,7 +83,7 @@ export default function DynamicCategory() {
 
   return (
     <main>
-        <CategoryMenu for="Vendors" heading="Categories"/> 
+        <CategoryMenu for="DashVendors" heading="Registry Options"/>
         <Spacer gapsize="1"/>
         <div className="bg-white shadow-xl rounded-lg">
             <div className="w-11/12 mx-auto pt-4 pb-8">
@@ -97,7 +97,7 @@ export default function DynamicCategory() {
                             // const likedstatus=userVendors.map(uservendor=>uservendor.vendor_id).includes(vendor.id);
                             const likedstatus=heartedVendors.includes(vendor);
                             return (
-                                <DashVendorCard currentlikedstatus={likedstatus?'liked':'unliked'} vendorId={vendor.id} vendorname={vendor.vendor_name} category={vendor.category?vendor.category:""} baseprice={vendor.base_price?vendor.base_price:0} slug={vendor.slug?vendor.slug:""}/>
+                                <DashVendorCard currentlikedstatus={likedstatus?'liked':'unliked'} vendorId={vendor.id} vendorname={vendor.vendor_name?vendor.vendor_name:""} category={vendor.category?vendor.category:""} baseprice={vendor.base_price?vendor.base_price:0} slug={vendor.slug?vendor.slug:""}/>
                             );
                         })                    
                     }

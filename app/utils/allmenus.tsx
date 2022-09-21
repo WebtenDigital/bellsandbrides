@@ -182,6 +182,57 @@ export const dashboardvendormenu:MenuLink[]=[
     },
 ];
 
+export const mainvendormenu:MenuLink[]=[
+    {
+        name: "Photography",
+        url: "/vendors/photography"
+    },
+    {
+        name: "Venue",
+        url: "/vendors/venue"
+    },
+    {
+        name: "Catering",
+        url: "/vendors/catering"
+    },
+    {
+        name: "Decor",
+        url: "/vendors/decor"
+    },
+    {
+        name: "Musician",
+        url: "/vendors/musician"
+    },
+    {
+        name: "Dressing",
+        url: "/vendors/dressing"
+    },
+    {
+        name: "Salon",
+        url: "/vendors/salon"
+    },
+    {
+        name: "Transportation",
+        url: "/vendors/transportation"
+    },
+    {
+        name: "MC",
+        url: "/vendors/mc"
+    },
+    {
+        name: "Ushers",
+        url: "/dashboard/vendormanager/ushers"
+    },
+    {
+        name: "DJ",
+        url: "/vendors/dj"
+    },
+    {
+        name: "Cake",
+        url: "/vendors/cake"
+    },
+];
+
 export const registrystoremenu:MenuLink[]=
 [
     {
