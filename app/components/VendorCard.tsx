@@ -38,7 +38,7 @@ export default function VendorCard(props:VendorProps) {
     <main>
         {/* NEW DESIGN */}
         <div className="w-9/12">
-          <div id="image"><Link to={`/vendors/${props.category}/${props.slug}`}><img src={dashimages.venue} className="h-20 w-full object-cover object-top rounded-2xl shadow-xl"/></Link></div>
+          <div id="image"><Link to={`/vendors/${props.category.toLowerCase()}/${props.slug}`}><img src={dashimages.venue} className="h-20 w-full object-cover object-top rounded-2xl shadow-xl"/></Link></div>
           {/* <Spacer gapsize="1"/> */}
           <div className="mt-1 px-3 py-2 bg-gray-50 rounded-xl shadow-xl">
             <div className="flex justify-between items-center">
@@ -69,7 +69,7 @@ export default function VendorCard(props:VendorProps) {
 
 
             {/* title */}
-            <Link to={`/vendor/${props.slug}`}>
+            <Link to={`/vendors/${props.category.toLowerCase()}/${props.slug}`}>
               <h2 className="py- text-gray-600 text-base text-lg font-bold leading-tight">{props.vendorname}</h2>
 
               {/* price */}

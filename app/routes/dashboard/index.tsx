@@ -6,7 +6,6 @@ import Heading from "~/components/dashboard/Heading";
 import Sentence from "~/components/dashboard/Sentence";
 import { storage } from "~/utils/session";
 import dashimages from "~/utils/dashimages";
-import { getPostsByCategory } from "~/utils/post.server";
 import DashFooter from "~/components/dashboard/DashFooter";
 import { getCeremony, getUser } from "~/utils/auth.server";
 import Spacer from "~/components/Spacer";
@@ -21,7 +20,7 @@ export const loader:LoaderFunction=async ({request})=>{
     const ceremony=await getCeremony(session);
 
     // get posts by category
-    const posts=await getPostsByCategory(ceremony?ceremony:"");
+    const posts=[""];
 
     if(theuser){
         return json({
@@ -154,8 +153,8 @@ export default function DashboardIndex() {
     const remainingDays=Math.floor((ceremonydate.getTime()-today.getTime())/(24*60*60*1000));
 
     return (
-        <main className="bg-gray-50 min-h-screen pb-72">
-            <div id="holder" className="w-11/12 mx-auto">
+        <main className="bg-gray-50 min-h-screen pb-72 lg:bg-white">
+            <div id="holder-lg-right" className="w-11/12 mx-auto">
                 <div>
                     <div className="py-4 capitalize">
                         <Heading type="main" text={`My ${currentuser.ceremony}`}/>
@@ -231,7 +230,7 @@ export default function DashboardIndex() {
                 </div>
                 {/* <div className="flex justify-end"><CTA type="empty" text="Read Articles" url={`/blog/categories/${currentuser.ceremony}`} bordercolor="peach"/></div> */}
             </div>
-            <DashFooter type="main" routename={'dashboard'}/>
+            <div className="lg:hidden"><DashFooter type="main" routename={'dashboard'}/></div>
         </main>
     )
 }

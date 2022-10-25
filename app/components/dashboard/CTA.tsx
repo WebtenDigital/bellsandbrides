@@ -12,15 +12,15 @@ function setCallToAction(ctatype:"fillednoarrow"|"emptywitharrownoborder"|"fille
     switch(ctatype){
         case 'fillednoarrow':
             return (
-                <Link to={url} className={`px-4 py-2 text-sm text-white font-medium ${bgcolor?bgcolor:'bg-peach'} rounded-2xl`}>{text}</Link>
+                <Link to={url} className={`px-4 py-2 text-sm text-white font-medium ${bgcolor?bgcolor:'bg-peach'} rounded-xl lg:text-base`}>{text}</Link>
             )
         case 'empty':
             return (
-                <Link to={url} className={`block w-full px-4 py-2 text-sm text-center text-${bordercolor} font-medium border border-${bordercolor} border-opacity-60 rounded-2xl`}>{text}</Link>
+                <Link to={url} className={`block w-full px-4 py-2 text-sm text-center text-${bordercolor} font-medium border border-${bordercolor} border-opacity-60 rounded-2xl lg:py-3 lg:text-base`}>{text}</Link>
             )
         case "emptywitharrow":
             return (
-                <Link to={url} className={`px-4 py-1 flex gap-2 items-center justify-between text-sm text-peach text-${bordercolor} font-medium border border-${bordercolor?bordercolor:"peach"} border-opacity-60 rounded-2xl`}>
+                <Link to={url} className={`px-4 py-1 flex gap-2 items-center justify-between text-sm text-peach text-${bordercolor} font-medium border border-${bordercolor?bordercolor:"peach"} border-opacity-60 rounded-2xl lg:py-2 lg:px-6`}>
                     {text}
                     <div id="arrow">
                         <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -31,7 +31,7 @@ function setCallToAction(ctatype:"fillednoarrow"|"emptywitharrownoborder"|"fille
             )
         case "emptywitharrownoborder":
         return (
-            <Link to={url} className={`py-1 flex gap-2 items-center text-sm text-peach text-${bordercolor} font-bold`}>
+            <Link to={url} className={`py-1 flex gap-2 items-center text-sm text-peach text-${bordercolor} font-bold lg:text-base`}>
                 {text}
                 <div id="arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 text-base`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -53,7 +53,7 @@ function setCallToAction(ctatype:"fillednoarrow"|"emptywitharrownoborder"|"fille
             );
         case "arrownoborder":
             return (
-                <Link to={url} className={`py-1 flex gap-2 items-center text-sm text-peach text-${bordercolor} font-medium border-opacity-60 rounded-2xl`}>
+                <Link to={url} className={`py-1 flex gap-2 items-center text-sm text-peach text-${bordercolor} font-medium border-opacity-60 rounded-2xl lg:text-base`}>
                     {text}
                     <div id="arrow">
                         <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -64,7 +64,7 @@ function setCallToAction(ctatype:"fillednoarrow"|"emptywitharrownoborder"|"fille
             );
         case "filledwitharrowtwo":
             return (
-                <Link to={url} className={`px-8 py-2 flex gap-2 items-center justify-between text-sm text-peach text-white font-medium bg-${bgcolor?bgcolor:"peach"} rounded-xl`}>
+                <Link to={url} className={`px-8 py-2 flex gap-2 items-center justify-between text-sm text-peach text-white font-medium bg-${bgcolor?bgcolor:"peach"} rounded-xl lg:py-3 lg:text-base `}>
                     {text}
                     <div id="arrow">
                         <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

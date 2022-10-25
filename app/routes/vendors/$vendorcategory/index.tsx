@@ -61,7 +61,8 @@ export const loader:LoaderFunction=async({params, request})=>{
 
   const categoryvendors=await db.vendors.findMany({
     where: {
-      category: category
+      category: category,
+      approved: 1
     }
   });
 

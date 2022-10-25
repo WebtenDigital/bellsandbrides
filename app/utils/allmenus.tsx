@@ -328,3 +328,27 @@ export const footerVendorLinks:MenuLink[]=[
         url: "/vendor-support",
     }
 ];
+
+// dashboard categories menus
+export const vendordashboardmenu:MenuLink[]=[
+    {
+        name: "Overview",
+        url: "/bellsvendor/dashboard"
+    },
+    {
+        name: "Your Information",
+        url: "/bellsvendor/dashboard/your-info"
+    },
+    {
+        name: "Your Images",
+        url: "/bellsvendor/dashboard/your-images"
+    },
+    {
+        name: "Analytics",
+        url: "/bellsvendor/dashboard/analytics"
+    },
+    {
+        name: "Advertising",
+        url: "/bellsvendor/dashboard/ads"
+    }
+];

@@ -142,7 +142,7 @@ export const login=async (form:LoginForm)=>{
             });
         }
         //if user exists but password is wrong
-        else if(user && !await bcrypt.compare(form.password, user.password)){
+        else if(user && !bcrypt.compare(form.password, user.password)){
             return json({
                 error: "wrong password",
                 errormessage: "Password is invalid.💀 Try again or click forgot password."
@@ -164,8 +164,7 @@ export const createUserSession=async(userId:string, redirectTo:string)=>{
         headers: {
             "Set-Cookie":await storage.commitSession(session)
         }
-    }); 
-
+    });
 }
 
 export const getUser=async function(session:Session){

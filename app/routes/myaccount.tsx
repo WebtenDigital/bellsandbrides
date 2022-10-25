@@ -43,11 +43,13 @@ export const action:ActionFunction=async ({request})=>{
 export const loader:LoaderFunction=({request})=>{
     const url=new URL(request.url);
     const previouspage=url.searchParams.get('from')
-
+    const formtype=url.searchParams.get("type");
 
     return json({
         data:{
-            previouspage: previouspage===null?'dashboard':previouspage
+            previouspage: previouspage===null?'dashboard':previouspage,
+            formtype: formtype?'register':"login"
+
         }
     })
 }
@@ -61,6 +63,7 @@ type ActionData={
 type LoaderData={
     data: {
         previouspage: string
+        formtype: string
     }
 }
 
@@ -73,7 +76,7 @@ export default function MyAccount() {
 
     const transition=useTransition();
     
-    const [formstate, setFormState]=useState('login');
+    const [formstate, setFormState]=useState(loaderdata.data.formtype==='register'?'register':'login');
     
 
   return (
@@ -155,12 +158,12 @@ export default function MyAccount() {
 
                 {formstate==="register"?
                 <div>
-                    <p className="pt-8 text-center text-sm text-gray-700">Already have an account? <button className="text-peach font-bold" onClick={()=>{setFormState('login')}}
+                    <p className="pt-8 text-center text-sm text-gray-700">Already have an account? <button type="button" className="text-peach font-bold" onClick={()=>{setFormState('login')}}
                     >Log in</button></p>
                 </div>
                 :
                 <div>
-                    <p className="pt-8 text-center text-sm text-gray-700">Don't have an account yet? <button className="text-peach font-bold" onClick={()=>{setFormState('register')}}
+                    <p className="pt-8 text-center text-sm text-gray-700">Don't have an account yet? <button type="button" className="text-peach font-bold" onClick={()=>{setFormState('register')}}
                     >Sign up</button></p>
                 </div>                
                 }

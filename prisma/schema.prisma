@@ -8,27 +8,28 @@ datasource db {
 }
 
 model users {
-  id                                Int            @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  email                             String         @unique(map: "email_UNIQUE") @db.VarChar(100)
-  password                          String?        @db.VarChar(200)
-  firstname                         String?        @db.VarChar(100)
-  lastname                          String?        @db.VarChar(100)
-  partnerfirstname                  String?        @db.VarChar(100)
-  partnerlastname                   String?        @db.VarChar(100)
-  ceremony                          String?        @default("wedding") @db.VarChar(100)
-  ceremony_date                     DateTime?      @db.DateTime(0)
-  user_status                       String?        @db.VarChar(100)
-  partner_status                    String?        @db.VarChar(100)
-  location                          String?        @db.VarChar(100)
-  estimated_guests                  String?        @db.VarChar(100)
-  registry_name                     String?        @db.VarChar(500)
-  registry_welcome_message          String?        @db.VarChar(2000)
-  registry_link                     String?        @db.VarChar(1000)
-  shipping_street_address           String?        @db.VarChar(100)
-  shipping_apt_building             String?        @db.VarChar(100)
-  shipping_floor_number             String?        @db.VarChar(100)
-  shipping_additional_location_info String?        @db.VarChar(100)
-  shipping_phone_number             String?        @db.VarChar(100)
+  id                                Int                   @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  email                             String                @unique(map: "email_UNIQUE") @db.VarChar(100)
+  password                          String?               @db.VarChar(200)
+  firstname                         String?               @db.VarChar(100)
+  lastname                          String?               @db.VarChar(100)
+  partnerfirstname                  String?               @db.VarChar(100)
+  partnerlastname                   String?               @db.VarChar(100)
+  ceremony                          String?               @default("wedding") @db.VarChar(100)
+  ceremony_date                     DateTime?             @db.DateTime(0)
+  user_status                       String?               @db.VarChar(100)
+  partner_status                    String?               @db.VarChar(100)
+  location                          String?               @db.VarChar(100)
+  estimated_guests                  String?               @db.VarChar(100)
+  registry_name                     String?               @db.VarChar(500)
+  registry_welcome_message          String?               @db.VarChar(2000)
+  registry_link                     String?               @db.VarChar(1000)
+  shipping_street_address           String?               @db.VarChar(100)
+  shipping_apt_building             String?               @db.VarChar(100)
+  shipping_floor_number             String?               @db.VarChar(100)
+  shipping_additional_location_info String?               @db.VarChar(100)
+  shipping_phone_number             String?               @db.VarChar(100)
+  user_vendor_reviews               user_vendor_reviews[]
   user_vendors                      user_vendors[]
 }
 
@@ -50,14 +51,39 @@ model posts {
 }
 
 model vendors {
-  id                Int     @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  vendor_name       String? @db.VarChar(100)
-  category          String? @db.VarChar(100)
-  rating            String? @db.VarChar(45)
-  business_location String? @db.VarChar(100)
-  base_price        Int?
-  slug              String? @db.VarChar(500)
-  featured          Int?    @default(0) @db.TinyInt
+  id                  Int                   @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  uq                  String?               @unique(map: "uq_UNIQUE") @db.VarChar(100)
+  vendor_name         String?               @db.VarChar(100)
+  category            String?               @db.VarChar(100)
+  rating              String?               @db.VarChar(45)
+  business_location   String?               @db.VarChar(100)
+  base_price          Int?
+  slug                String?               @db.VarChar(100)
+  featured            Int?                  @default(0) @db.TinyInt
+  cover_image         String?               @db.VarChar(500)
+  owner_firstname     String?               @db.VarChar(100)
+  owner_lastname      String?               @db.VarChar(100)
+  vendor_email        String?               @db.VarChar(100)
+  email_verified      Int?                  @default(0) @db.TinyInt
+  vendorscol          String?               @db.VarChar(45)
+  username            String?               @db.VarChar(50)
+  password            String?               @db.VarChar(50)
+  vendor_phone_number String?               @db.VarChar(45)
+  business_address    String?               @db.VarChar(100)
+  website             String?               @db.VarChar(100)
+  from_where          String?               @db.VarChar(45)
+  instagram_handle    String?               @db.VarChar(45)
+  approved            Int?                  @default(0) @db.TinyInt
+  instagram_link      String?               @db.VarChar(100)
+  facebook_link       String?               @db.VarChar(100)
+  twitter_link        String?               @db.VarChar(100)
+  image_one           String?               @db.VarChar(100)
+  image_two           String?               @db.VarChar(100)
+  image_three         String?               @db.VarChar(100)
+  image_four          String?               @db.VarChar(100)
+  image_five          String?               @db.VarChar(100)
+  about               String?               @db.LongText
+  user_vendor_reviews user_vendor_reviews[]
 }
 
 model user_vendors {
@@ -83,4 +109,21 @@ model user_registry_store {
   id               Int  @id @unique(map: "id_UNIQUE") @default(autoincrement())
   user_id          Int?
   registry_item_id Int?
+}
+
+model user_vendor_reviews {
+  id              Int       @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  user_id         Int
+  user_first_name String?   @db.VarChar(100)
+  user_last_name  String?   @db.VarChar(100)
+  vendor_id       Int
+  review          String?   @db.LongText
+  rating          Int?      @default(0)
+  review_date     DateTime? @db.DateTime(0)
+  review_status   Int?      @default(0) @db.TinyInt
+  users           users     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "userId")
+  vendors         vendors   @relation(fields: [vendor_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "vendorId")
+
+  @@index([user_id], map: "userId_idx")
+  @@index([vendor_id], map: "vendorId_idx")
 }

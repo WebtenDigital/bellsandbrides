@@ -43,7 +43,7 @@ export default function VendorIndex() {
   const heartedVendors=loaderdata.data.heartedVendors;
 
   function howManyVendorsIn(category:string){
-    const categoryVendors=heartedVendors.filter(vendor=>vendor.vendor_category===category.toLowerCase())
+    const categoryVendors=heartedVendors.filter(vendor=>vendor.vendor_category?.toLowerCase()===category.toLowerCase())
     const length=categoryVendors.length;
 
     return length;

@@ -5,6 +5,6 @@ type SentenceProps={
 
 export default function Sentence(props:SentenceProps) {
   return (
-    <h1 className={`text-gray-600 text-sm tracking-tight `+ props.className }>{props.text}</h1>
+    <p className={`text-gray-600 text-sm tracking-tight lg:text-base `+ props.className }>{props.text}</p>
   )
 }

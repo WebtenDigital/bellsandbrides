@@ -1,10 +1,10 @@
 type HeadingProps={
-  type: "main"|"sub"|"hero"|"mid"
+  type: "main"|"sub"|"hero"|"mid"|"small"
   text: string
   textcolor?:string
 }
 
-function setHeading(type:"main"|"sub"|"hero"|"mid", text:string, textcolor?:string){
+function setHeading(type:"main"|"sub"|"hero"|"mid"|"small", text:string, textcolor?:string){
   switch(type){
     case 'main':
       return (
@@ -16,11 +16,16 @@ function setHeading(type:"main"|"sub"|"hero"|"mid", text:string, textcolor?:stri
       );
     case 'hero':
       return (
-        <h1 className="text-gray-600 text-2xl font-bold">{text}</h1>
+        <h1 className="text-gray-600 text-2xl font-bold lg:text-3xl">{text}</h1>
       );
     case 'mid':
       return (
-        <h1 className={`${textcolor?`text-${textcolor}`:'text-gray-600'} text-xl font-bold leading-tight`}>{text}</h1>
+        <h1 className={`${textcolor?`text-${textcolor}`:'text-gray-600'} text-xl font-bold leading-tight lg:text-2xl`}>{text}</h1>
+      );
+
+    case 'small':
+      return (
+        <h1 className={`${textcolor?`text-${textcolor}`:'text-gray-600'} text-lg font-bold leading-tight`}>{text}</h1>
       );
     
   }

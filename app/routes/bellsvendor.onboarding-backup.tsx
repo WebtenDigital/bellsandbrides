@@ -1,6 +1,8 @@
 import { ActionFunction, json } from '@remix-run/node'
-import { Form } from '@remix-run/react'
+import { Form, useActionData } from '@remix-run/react'
 import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import slugify from 'slugify'
 import CTA from '~/components/dashboard/CTA'
 import Heading from '~/components/dashboard/Heading'
 import Sentence from '~/components/dashboard/Sentence'
@@ -8,6 +10,7 @@ import DropDown from '~/components/DropDown'
 import FormField from '~/components/FormField'
 import ProgressBar from '~/components/ProgressBar'
 import StepNextButton from '~/components/StepNextButton'
+import { db } from '~/utils/db.server'
 import { vendorCategories } from '~/utils/vendorcategories'
 import bannerimages from '../utils/bannerimages'
 
@@ -16,23 +19,61 @@ import bannerimages from '../utils/bannerimages'
 export const action:ActionFunction=async({request})=>{
   const formdata=await request.formData();
   // step one
-  const businessname=formdata.get('business_name');
-  const firstname=formdata.get('owner_first_name');
-  const lastname=formdata.get('owner_last_name');
-  const email=formdata.get('email');
-  const vendorcategory=formdata.get('vendor_category');
-  const phonenumber=formdata.get('phone_number');
+  const businessname=formdata.get('business_name')?.toString();
+  const slug=slugify(businessname?businessname.toLowerCase():"");
+  const firstname=formdata.get('owner_first_name')?.toString();
+  const lastname=formdata.get('owner_last_name')?.toString();
+  const email=formdata.get('email')?.toString();
+  const vendorcategory=formdata.get('vendor_category')?.toString();
+  const phonenumber=formdata.get('phone_number')?.toString();
+  const uniqueid=formdata.get('unique_id')?.toString();
 
   // step two
-  const location=formdata.get('vendor_location');
-  const address=formdata.get('vendor_address');
-  const ighandle=formdata.get('vendor_ig_handle');
-  const website=formdata.get('vendor_website');
-  const fromwhere=formdata.get('from_where');
+  const location=formdata.get('vendor_location')?.toString();
+  const address=formdata.get('vendor_address')?.toString();
+  const ighandle=formdata.get('vendor_ig_handle')?.toString();
+  const website=formdata.get('vendor_website')?.toString();
+  const fromwhere=formdata.get('from_where')?.toString();
+
+  // add to db
+  const addvendortodb=await db.vendors.create({
+    data: {
+      uq: uniqueid,
+      vendor_name: businessname,
+      owner_firstname: firstname,
+      owner_lastname: lastname,
+      vendor_email: email,
+      category: vendorcategory,
+      vendor_phone_number: phonenumber,
+      slug: slug,      
+    }
+  });
+
+  if(addvendortodb.uq){
+    const updatevendordb=await db.vendors.update({
+      where: {
+        uq: addvendortodb.uq
+      },
+      data: {
+        business_location: location,
+        business_address: address,
+        instagram_handle: ighandle,
+        website: website,
+        from_where: fromwhere,
+      }
+    });
+  }
+  else{
+    console.log("FUCKKKKKKKKKK");
+  }
+
+  console.log("First Half: ", uniqueid, businessname, firstname,lastname, email, vendorcategory, phonenumber, slug)
+  console.log("Second Half: ", uniqueid, location, address, ighandle, website, fromwhere)
+
   
   return json({
     data: {
-
+      
     }
   });
 }
@@ -106,6 +147,9 @@ export default function VendorOnboarding() {
               <div><DropDown placeholder='Please Select an Option' options={vendorCategories} getChosenValue={(chosenvalue)=>{handleChosenValue(chosenvalue)}}/></div>
               <input type="hidden" required name="vendor_category" value={chosencategory}/>
             </div>
+
+            {/* uuid */}
+            <input type="hidden" value={uuidv4()} name="unique_id"/>
             
 
             <div className='py-4'>

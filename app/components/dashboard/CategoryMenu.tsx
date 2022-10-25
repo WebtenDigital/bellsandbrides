@@ -1,14 +1,14 @@
 import { Link } from "@remix-run/react";
 import { useState, useEffect, useRef } from "react"
-import { dashboardaccountmenu, dashboardregistrymenu, dashboardvendormenu, mainvendormenu, MenuLink, registrystoremenu } from "~/utils/allmenus";
+import { dashboardaccountmenu, dashboardregistrymenu, dashboardvendormenu, mainvendormenu, MenuLink, registrystoremenu, vendordashboardmenu } from "~/utils/allmenus";
 import Separator from "../Separator";
 
 type CategoryMenuProps={
-    for: "Account"|"DashVendors"|"Registry"|"Registry Store"|"Vendors",
-    heading: "Account Options"|"Categories"|"Registry Options"|"Registry Categories"
+    for: "Account"|"DashVendors"|"Registry"|"Registry Store"|"Vendors"|"VendorDashboard",
+    heading: "Account Options"|"Categories"|"Registry Options"|"Registry Categories"|"Dashboard"
 }
 
-function setCategoryMenu(type:"Account"|"DashVendors"|"Registry"|"Registry Store"|"Vendors"){
+function setCategoryMenu(type:"Account"|"DashVendors"|"Registry"|"Registry Store"|"Vendors"|"VendorDashboard"){
     switch (type){
         case "Account":
             return dashboardaccountmenu;
@@ -20,6 +20,8 @@ function setCategoryMenu(type:"Account"|"DashVendors"|"Registry"|"Registry Store
             return registrystoremenu;
         case "Vendors":
             return mainvendormenu;
+        case "VendorDashboard":
+            return vendordashboardmenu;
     }
 }
 
@@ -46,7 +48,7 @@ export default function CategoryMenu(props:CategoryMenuProps) {
   return (
     <main className="bg-white shadow-xl rounded-lg">
         <div className="px-4 py-4 flex items-center justify-between">
-            <p className="text-xs text-gray-500 font-bold uppercase">{props.for.toLowerCase()==='dashvendors'?"Vendors":props.for}</p>
+            <p className="text-xs text-gray-500 font-bold uppercase">{props.for.toLowerCase()==='dashvendors'?"Vendors":props.for.toLowerCase()==='vendordashboard'?"Dashboard":props.for}</p>
             <div className="relative flex items-center gap-3">
                 <h4 className="text-xs text-gray-500 font-bold uppercase">{props.for.toLowerCase()==='vendors'?"Categories":"Options"}</h4>
                 <button id="category-menu-icon" className="flex items-center gap-3" onClick={()=>{setDropDown(prevstate=>prevstate=!prevstate)}}>

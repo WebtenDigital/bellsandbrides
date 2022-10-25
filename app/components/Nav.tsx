@@ -100,15 +100,19 @@ export default function Nav(props:NavProps) {
                 {
                     // if logged in, show the user account icon, otherwise, show the login and sign up buttons
                     props.loggedin?
-                    <div className='w-2/12 flex justify-end'>
-                        <button className=''>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-peach rounded-full hover:scale-110" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    </div>
+                    // <div className='w-2/12 flex justify-end'>
+                    //     <button className=''>
+                    //         <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-peach rounded-full hover:scale-110" viewBox="0 0 20 20" fill="currentColor">
+                    //         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+                    //         </svg>
+                    //     </button>
+                    // </div>
+                    <div className='w-2/12 flex justify-end'><Link to="/logout" className='px-5 py-1 text-white font-bold bg-[#F95344] rounded-xl hover:bg-pink-400 lg:py-2'>Log Out</Link></div>
                     :
-                    <div className='w-2/12 flex justify-end'><Link to="/myaccount" className='px-5 py-1 text-white font-bold bg-[#F95344] rounded-xl hover:bg-pink-400'>Log in</Link></div>
+                    <div className='w-4/12 flex items-center justify-end gap-x-4'>
+                        <div className='flex justify-end'><Link to="/myaccount" className='px-5 py-1 text-white font-bold bg-[#F95344] rounded-xl hover:bg-pink-400 lg:py-2'>Log In</Link></div>
+                        <div className='flex justify-end'><Link to="/myaccount?type=register" className='px-5 py-1 text-peach font-bold border border-peach rounded-xl lg:py-2'>Sign Up</Link></div>
+                    </div>
                 }
             </div>          
         </nav>
