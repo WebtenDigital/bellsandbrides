@@ -1,4 +1,5 @@
 import { db } from "./db.server"
+import setIcon from "./iconsetter"
 
 type SubLink={
     name: string,
@@ -62,13 +63,15 @@ type DashMenuItem={
     name: "dashboard"|"vendors"|"registry"|"account"
     icon: JSX.Element
     url: string
+    width?: string
+    height?: string
 }
 
 // dashboard menu
 export const mainDashMenu:DashMenuItem[]=[
     {
         name: "dashboard",
-        icon: <svg className="fill-gray-500 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356.526 356.526"><path d="m218.255 113.943 29.936-39.527c2.168-2.864 1.855-7.075-.716-9.587L183.992 2.82C182.659 1.519 180.183 0 177.588 0c-2.624 0-5.105 1.554-6.432 2.884l-62.169 62.309c-2.536 2.541-2.841 6.636-.71 9.525l29.147 39.525c-48.697 16.945-83.745 63.304-83.745 117.701 0 68.695 55.888 124.583 124.584 124.583s124.584-55.888 124.584-124.583c0-54.715-35.453-101.303-84.592-118.001zm-39.992 212.583c-52.154 0-94.584-42.43-94.584-94.583 0-52.154 42.43-94.584 94.584-94.584s94.584 42.43 94.584 94.584c0 52.153-42.43 94.583-94.584 94.583z"/></svg>,
+        icon: <svg className={`fill-gray-500 h-7 w-7`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356.526 356.526"><path d="m218.255 113.943 29.936-39.527c2.168-2.864 1.855-7.075-.716-9.587L183.992 2.82C182.659 1.519 180.183 0 177.588 0c-2.624 0-5.105 1.554-6.432 2.884l-62.169 62.309c-2.536 2.541-2.841 6.636-.71 9.525l29.147 39.525c-48.697 16.945-83.745 63.304-83.745 117.701 0 68.695 55.888 124.583 124.584 124.583s124.584-55.888 124.584-124.583c0-54.715-35.453-101.303-84.592-118.001zm-39.992 212.583c-52.154 0-94.584-42.43-94.584-94.583 0-52.154 42.43-94.584 94.584-94.584s94.584 42.43 94.584 94.584c0 52.153-42.43 94.583-94.584 94.583z"/></svg>,
         url: "/dashboard",
     },
     {
@@ -83,7 +86,7 @@ export const mainDashMenu:DashMenuItem[]=[
     },
     {
         name: "account",
-        icon: <svg className="fill-gray-500 h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 262.394 262.394"><path d="M245.63 103.39h-9.91a107.445 107.445 0 0 0-10.955-26.432l7.015-7.015c6.546-6.546 6.546-17.159 0-23.705l-15.621-15.621c-6.546-6.546-17.159-6.546-23.705 0l-7.015 7.015a107.484 107.484 0 0 0-26.432-10.955v-9.914C159.007 7.505 151.502 0 142.244 0h-22.091c-9.258 0-16.763 7.505-16.763 16.763v9.914a107.474 107.474 0 0 0-26.431 10.954l-7.016-7.015c-6.546-6.546-17.159-6.546-23.705.001l-15.62 15.621c-6.546 6.546-6.546 17.159 0 23.705l7.014 7.014a107.452 107.452 0 0 0-10.955 26.433h-9.914c-9.257 0-16.762 7.505-16.762 16.763v22.09c0 9.258 7.505 16.763 16.762 16.763h9.914a107.494 107.494 0 0 0 10.956 26.433l-7.015 7.015c-6.546 6.546-6.546 17.159 0 23.705l15.621 15.621c6.546 6.546 17.159 6.546 23.705 0l7.016-7.016a107.438 107.438 0 0 0 26.431 10.955v9.913c0 9.258 7.505 16.763 16.763 16.763h22.091c9.258 0 16.763-7.505 16.763-16.763v-9.913a107.487 107.487 0 0 0 26.432-10.956l7.016 7.017c6.546 6.546 17.159 6.546 23.705 0l15.621-15.621a16.762 16.762 0 0 0 0-23.706l-7.016-7.016a107.484 107.484 0 0 0 10.955-26.432h9.91c9.258 0 16.763-7.505 16.763-16.763v-22.09c-.001-9.257-7.506-16.762-16.764-16.762zm-114.432 87.804c-33.083 0-59.998-26.915-59.998-59.997 0-33.083 26.915-59.998 59.998-59.998s59.998 26.915 59.998 59.998c0 33.082-26.915 59.997-59.998 59.997z"/><path d="M131.198 101.199c-16.541 0-29.998 13.457-29.998 29.998 0 16.54 13.457 29.997 29.998 29.997s29.998-13.457 29.998-29.997c0-16.541-13.457-29.998-29.998-29.998z"/></svg>,
+        icon: <svg className={`fill-gray-500 h-7 w-7 `} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 262.394 262.394"><path d="M245.63 103.39h-9.91a107.445 107.445 0 0 0-10.955-26.432l7.015-7.015c6.546-6.546 6.546-17.159 0-23.705l-15.621-15.621c-6.546-6.546-17.159-6.546-23.705 0l-7.015 7.015a107.484 107.484 0 0 0-26.432-10.955v-9.914C159.007 7.505 151.502 0 142.244 0h-22.091c-9.258 0-16.763 7.505-16.763 16.763v9.914a107.474 107.474 0 0 0-26.431 10.954l-7.016-7.015c-6.546-6.546-17.159-6.546-23.705.001l-15.62 15.621c-6.546 6.546-6.546 17.159 0 23.705l7.014 7.014a107.452 107.452 0 0 0-10.955 26.433h-9.914c-9.257 0-16.762 7.505-16.762 16.763v22.09c0 9.258 7.505 16.763 16.762 16.763h9.914a107.494 107.494 0 0 0 10.956 26.433l-7.015 7.015c-6.546 6.546-6.546 17.159 0 23.705l15.621 15.621c6.546 6.546 17.159 6.546 23.705 0l7.016-7.016a107.438 107.438 0 0 0 26.431 10.955v9.913c0 9.258 7.505 16.763 16.763 16.763h22.091c9.258 0 16.763-7.505 16.763-16.763v-9.913a107.487 107.487 0 0 0 26.432-10.956l7.016 7.017c6.546 6.546 17.159 6.546 23.705 0l15.621-15.621a16.762 16.762 0 0 0 0-23.706l-7.016-7.016a107.484 107.484 0 0 0 10.955-26.432h9.91c9.258 0 16.763-7.505 16.763-16.763v-22.09c-.001-9.257-7.506-16.762-16.764-16.762zm-114.432 87.804c-33.083 0-59.998-26.915-59.998-59.997 0-33.083 26.915-59.998 59.998-59.998s59.998 26.915 59.998 59.998c0 33.082-26.915 59.997-59.998 59.997z"/><path d="M131.198 101.199c-16.541 0-29.998 13.457-29.998 29.998 0 16.54 13.457 29.997 29.998 29.997s29.998-13.457 29.998-29.997c0-16.541-13.457-29.998-29.998-29.998z"/></svg>,
         url: "/dashboard/account",
     },
 ]
@@ -91,43 +94,52 @@ export const mainDashMenu:DashMenuItem[]=[
 // dashboard categories menus
 export const dashboardaccountmenu:MenuLink[]=[
     {
-        name: "Personal Information",
-        url: "/dashboard/account/personal"
+        name: "Information",
+        url: "/dashboard/account/personal",
+        icon: setIcon("information", "w-8", "h-8")
     },
     {
         name: "Reviews",
-        url: "/dashboard/account/reviews"
+        url: "/dashboard/account/reviews",
+        icon: setIcon("reviews", "w-8", "h-8")
     },
     {
         name: "Payment Details",
-        url: "/dashboard/account/payment"
+        url: "/dashboard/account/payment",
+        icon: setIcon("payment details", "w-8", "h-8")
     },
-    {
-        name: "Email Preferences",
-        url: "/dashboard/account/preferences"
-    }
+    // {
+    //     name: "Email Preferences",
+    //     url: "/dashboard/account/preferences",
+    //     icon: setIcon("email preferences", "w-8", "h-8")
+    // }
 ]
 
 export const dashboardregistrymenu:MenuLink[]=[
     {
         name: "Overview",
-        url: "/dashboard/registry"
+        url: "/dashboard/registry",
+        icon: setIcon("overview", "w-8", "h-8")
     },
     {
         name: "Manage Registry",
-        url: "/dashboard/registry/manage"
+        url: "/dashboard/registry/manage",
+        icon: setIcon("manage registry", "w-8", "h-8")
     },
     {
-        name: "Registry Checklist",
-        url: "/dashboard/registry/checklist"
+        name: "Checklist",
+        url: "/dashboard/registry/checklist",
+        icon: setIcon("registry checklist", "w-8", "h-8")
     },
     {
         name: "Gift Tracker",
-        url: "/dashboard/registry/gift-tracker"
+        url: "/dashboard/registry/gift-tracker",
+        icon: setIcon("gift tracker", "w-8", "h-8")
     },
     {
         name: "Registry Settings",
-        url: "/dashboard/registry/settings"
+        url: "/dashboard/registry/settings",
+        icon: setIcon("registry settings", "w-8", "h-8")
     },
 ]
 
@@ -185,51 +197,128 @@ export const dashboardvendormenu:MenuLink[]=[
 export const mainvendormenu:MenuLink[]=[
     {
         name: "Photography",
-        url: "/vendors/photography"
+        url: "/vendors/photography",
+        icon: setIcon('photography', "w-8", "h-8")
     },
     {
         name: "Venue",
-        url: "/vendors/venue"
+        url: "/vendors/venue",
+        icon: setIcon('venue', "w-8", "h-8")
     },
     {
         name: "Catering",
-        url: "/vendors/catering"
+        url: "/vendors/catering",
+        icon: setIcon('catering', "w-8", "h-8")
     },
     {
         name: "Decor",
-        url: "/vendors/decor"
+        url: "/vendors/decor",
+        icon: setIcon('decor', "w-8", "h-8")
     },
     {
         name: "Musician",
-        url: "/vendors/musician"
+        url: "/vendors/musician",
+        icon: setIcon('musician', "w-8", "h-8")
     },
     {
         name: "Dressing",
-        url: "/vendors/dressing"
+        url: "/vendors/dressing",
+        icon: setIcon('dressing', "w-8", "h-8")
     },
     {
         name: "Salon",
-        url: "/vendors/salon"
+        url: "/vendors/salon",
+        icon: setIcon('salon', "w-8", "h-8")
     },
     {
         name: "Transportation",
-        url: "/vendors/transportation"
+        url: "/vendors/transportation",
+        icon: setIcon('transportation', "w-8", "h-8")
     },
     {
         name: "MC",
-        url: "/vendors/mc"
+        url: "/vendors/mc",
+        icon: setIcon('mc', "w-8", "h-8")
     },
     {
         name: "Ushers",
-        url: "/dashboard/vendormanager/ushers"
+        url: "/dashboard/vendormanager/ushers",
+        icon: setIcon('ushers', "w-8", "h-8")
+
     },
     {
         name: "DJ",
-        url: "/vendors/dj"
+        url: "/vendors/dj",
+        icon: setIcon('dj', "w-8", "h-8")
     },
     {
         name: "Cake",
-        url: "/vendors/cake"
+        url: "/vendors/cake",
+        icon: setIcon('cake', "w-8", "h-8")
+    },
+];
+
+export const dashmenucategories:MenuLink[]=[
+    {
+        name: "Photography",
+        url: "/dashboard/vendormanager/photography",
+        icon: setIcon('photography', "w-8", "h-8")
+    },
+    {
+        name: "Venue",
+        url: "/dashboard/vendormanager/venue",
+        icon: setIcon('venue', "w-8", "h-8")
+    },
+    {
+        name: "Catering",
+        url: "/dashboard/vendormanager/catering",
+        icon: setIcon('catering', "w-8", "h-8")
+    },
+    {
+        name: "Decor",
+        url: "/dashboard/vendormanager/decor",
+        icon: setIcon('decor', "w-8", "h-8")
+    },
+    {
+        name: "Musician",
+        url: "/dashboard/vendormanager/musician",
+        icon: setIcon('musician', "w-8", "h-8")
+    },
+    {
+        name: "Dressing",
+        url: "/dashboard/vendormanager/dressing",
+        icon: setIcon('dressing', "w-8", "h-8")
+    },
+    {
+        name: "Salon",
+        url: "/dashboard/vendormanager/salon",
+        icon: setIcon('salon', "w-8", "h-8")
+    },
+    {
+        name: "Transportation",
+        url: "/dashboard/vendormanager/transportation",
+        icon: setIcon('transportation', "w-8", "h-8")
+    },
+    {
+        name: "MC",
+        url: "/dashboard/vendormanager/mc",
+        icon: setIcon('mc', "w-8", "h-8")
+    },
+    {
+        name: "Ushers",
+        url: "/dashboard/vendormanager/ushers",
+        icon: setIcon('ushers', "w-8", "h-8")
+
+    },
+    {
+        name: "DJ",
+        url: "/dashboard/vendormanager/dj",
+        icon: setIcon('dj', "w-8", "h-8")
+    },
+    {
+        name: "Cake",
+        url: "/dashboard/vendormanager/cake",
+        icon: setIcon('cake', "w-8", "h-8")
     },
 ];
 
@@ -352,3 +441,5 @@ export const vendordashboardmenu:MenuLink[]=[
         url: "/bellsvendor/dashboard/ads"
     }
 ];
+
+

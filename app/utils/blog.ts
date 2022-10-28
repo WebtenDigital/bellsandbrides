@@ -88,7 +88,7 @@ export type BlogCategory={
 export async function featuredPosts(){
     const query=`
     {
-        postCollection(where: {featured: true}){
+        postCollection(where: {featured: true}){ 
           items{
             title,
             ceremony,

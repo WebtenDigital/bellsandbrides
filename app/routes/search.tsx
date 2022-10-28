@@ -1,6 +1,6 @@
 import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
-import VendorSearch from "~/components/dashboard/VendorSearch";
+import VendorSearch from "~/components/dashboard/VendorSearchByName";
 import Nav from "~/components/Nav";
 import Spacer from "~/components/Spacer";
 import { getUser } from "~/utils/auth.server";

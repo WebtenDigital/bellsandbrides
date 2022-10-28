@@ -23,7 +23,7 @@ export const loader:LoaderFunction=async function(){
   });
 }
 
-export type BlogPostCard={
+type BlogPostCard={
   title: string
   ceremony: string[]
   summary: string

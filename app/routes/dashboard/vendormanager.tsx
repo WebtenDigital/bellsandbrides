@@ -4,12 +4,20 @@ import Spacer from "~/components/Spacer";
 
 export default function VendorsLayout() {
   return (
-    <main className="w-11/12 mx-auto">
+    <main>
+      <div className="w-11/12 mx-auto lg:hidden">
         <Spacer gapsize="1"/>
         {/* <div className="min-h-screen py-4 bg-white shadow-lg rounded-lg"> */}
           <div className=""><Outlet/></div>
         {/* </div> */}
-      <DashFooter type="main" routename="vendors"/>
+      <div className="lg:hidden"><DashFooter type="main" routename="vendors"/></div>
+    </div>
+
+      <div className="hidden lg:block">
+        <div><Outlet/></div>
+      </div>
     </main>
+
+
   )
 }

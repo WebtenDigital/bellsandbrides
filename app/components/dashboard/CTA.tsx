@@ -12,11 +12,11 @@ function setCallToAction(ctatype:"fillednoarrow"|"emptywitharrownoborder"|"fille
     switch(ctatype){
         case 'fillednoarrow':
             return (
-                <Link to={url} className={`px-4 py-2 text-sm text-white font-medium ${bgcolor?bgcolor:'bg-peach'} rounded-xl lg:text-base`}>{text}</Link>
+                <Link to={url} className={`px-4 py-2 text-sm text-white font-medium ${bgcolor?bgcolor:'bg-peach'} rounded-xl lg:py-3 lg:text-base`}>{text}</Link>
             )
         case 'empty':
             return (
-                <Link to={url} className={`block w-full px-4 py-2 text-sm text-center text-${bordercolor} font-medium border border-${bordercolor} border-opacity-60 rounded-2xl lg:py-3 lg:text-base`}>{text}</Link>
+                <Link to={url} className={`block w-full px-4 py-2 text-sm text-center text-${bordercolor} font-medium border border-${bordercolor} border-opacity-60 rounded-2xl lg:py-2 lg:text-base`}>{text}</Link>
             )
         case "emptywitharrow":
             return (

@@ -161,7 +161,7 @@ export default function RegistryOverview() {
 
   return (
     <main>
-        <section className="pt-4 pb-20 px-4 bg-white shadow-lg rounded-lg">
+        <section className="pt-4 pb-20 px-4 bg-white shadow-lg rounded-lg lg:shadow-none">
         <div>
             <Heading type="main" text="My Registry Overview"/>
         </div>
@@ -233,7 +233,7 @@ export default function RegistryOverview() {
             {
               featuredregistryitems.map(item=>{
                 return (
-                  <div className="py-2"><RegistryItemCard id={item.id} imageurl={item.item_image?item.item_image:""} name={item.item_name} category={item.item_category} price={item.item_price}/></div>
+                  <div className="py-2"><RegistryItemCard id={item.id} imageurl={item.item_image?item.item_image:""} name={item.item_name?item.item_name:""} category={item.item_category?item.item_category:""} price={item.item_price?item.item_price:0}/></div>
                 )
               })
             }

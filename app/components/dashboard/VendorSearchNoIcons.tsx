@@ -1,9 +1,9 @@
 import { Link } from "@remix-run/react";
 import { useState } from "react";
-import setIcon from "~/utils/iconsetter";
 import { vendorCategories } from "~/utils/vendorcategories";
+import { setIcon } from "~/components/dashboard/VendorCategory";
 
-export default function VendorSearch() {
+export default function VendorSearchNoIcons() {
     const [chosencategory, setChosenCategory]=useState('Find Vendor');
     const [showdropdown, setShowDropDown]=useState(false);
   
@@ -15,8 +15,8 @@ export default function VendorSearch() {
     
   return (
     <main>
-        <div className="relative w-full flex">
-                <button onClick={()=>{handleClick()}} className="block w-full px-4 flex justify-between items-center bg-white rounded-l-lg">
+        <div className="relative w-full flex lg:shadow-xl lg:rounded-xl">
+                <button onClick={()=>{handleClick()}} className="block w-full px-4 flex justify-between items-center bg-white rounded-l-lg ">
                   <p className="text-sm text-gray-600 font-medium lg:text-base">{chosencategory}</p>
                   <div>
                     {showdropdown?
@@ -38,8 +38,8 @@ export default function VendorSearch() {
                       vendorCategories.map(category=>{
                         return (
                           <button className="block flex gap-4 py-2 lg:flex lg:items-center lg:gap-x-6 lg:pl-2 lg:py-3 lg:hover:pl-2 lg:hover:bg-white lg:hover:rounded-xl" onClick={(event)=>{setChosenCategory(event.currentTarget.textContent?event.currentTarget.textContent:""); setShowDropDown(false)}}>
-                            <div className="w-2/12 lg:hidden">{setIcon(category, 'w-6', 'h-6')}</div>
-                            <div className="hidden w-2/12 lg:block">{setIcon(category, 'w-10', 'h-10')}</div>
+                            {/* <div className="w-2/12 lg:hidden">{setIcon(category, 'w-6', 'h-6')}</div> */}
+                            {/* <div className="hidden w-2/12 lg:block">{setIcon(category, 'w-10', 'h-10')}</div> */}
                             <p className="text-sm text-gray-600 font-semibold lg:text-sm lg:font-medium">{category}</p>
                             {/* {category} */}
                           </button>

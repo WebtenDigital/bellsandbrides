@@ -60,8 +60,14 @@ export default function VendorIndex() {
     return length;
   }
 
-  const maincontent=<div>    
-    <main className="w-11/12">
+  const maincontent=<div>
+
+    <div className="flex">
+      <div className="w-6/12"></div>
+      <div className="ml-20 w-6/12">dumebi</div>
+    </div>
+    
+    {/* <main>
     <div className="lg:py-12">
             <div className="lg:flex lg:items-center lg:justify-between">
               <div className="lg:w-4/12"><Heading type="main" text="Vendor Manager"/></div>
@@ -87,40 +93,10 @@ export default function VendorIndex() {
             </div>
             <div className="lg:hidden"><Spacer gapsize="10"/></div>       
         </div>
-    </main>
+    </main> */}
   </div>
 
   return (
-    <div>
-      <main className="lg:hidden">
-        <div className="lg:py-12">
-            <div className="lg:flex lg:items-center lg:justify-between">
-              <div className="lg:w-4/12"><Heading type="main" text="Vendor Manager"/></div>
-              <div className="lg:hidden"><Spacer gapsize="2"/></div>
-              <div className="hidden lg:block lg:w-7/12"><VendorSearchNoIcons/></div>
-              <div className="lg:hidden"><VendorSearch/></div>
-            </div>
-            <div className="lg:py-4">
-              <div className="pt-8 pb-4"><Heading type="sub" text="All Vendor Categories"/></div>
-              <div className="pt-4">
-                  <div className="grid grid-cols-3 gap-3 lg:grid lg:grid-cols-4 lg:gap-5">
-                    {
-                      allCategories.map(categoryname=>{
-                        return (
-                          <div>
-                            <VendorCategory categoryname={categoryname} howmanyvendors={howManyVendorsIn(categoryname)}/>
-                          </div>
-                        )
-                      })
-                    }
-                  </div>
-              </div>
-            </div>
-            <div className="lg:hidden"><Spacer gapsize="10"/></div>       
-        </div>
-    </main>
-
-    <div className="pt-4 hidden lg:block"><DashboardMainSideMenu maincontent={maincontent} firstname={currentuser.firstname?currentuser.firstname:""} partnerfirstname={currentuser.partnerfirstname?currentuser.partnerfirstname:""} ceremony={currentuser.ceremony?currentuser.ceremony:""} /></div>
-    </div>
+    <div className="pt-4"><DashboardMainSideMenu maincontent={maincontent} firstname={currentuser.firstname?currentuser.firstname:""} partnerfirstname={currentuser.partnerfirstname?currentuser.partnerfirstname:""} ceremony={currentuser.ceremony?currentuser.ceremony:""} /></div>
     )
 }

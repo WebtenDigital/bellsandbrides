@@ -3,7 +3,7 @@ import { ActionFunction, json, LoaderFunction } from "@remix-run/node";
 import { Link, useLoaderData, useTransition } from "@remix-run/react";
 import { useState } from "react";
 import Heading from "~/components/dashboard/Heading";
-import VendorSearch from "~/components/dashboard/VendorSearch";
+import VendorSearch from "~/components/dashboard/VendorSearchByName";
 import FilterOption from "~/components/FilterOption";
 import Nav from "~/components/Nav";
 import VendorCard from "~/components/VendorCard";

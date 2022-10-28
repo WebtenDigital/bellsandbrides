@@ -1,6 +1,6 @@
 import { Form, Link, useTransition } from "@remix-run/react";
 
-export default function VendorSearch() {
+export default function VendorSearchByName() {
     // const transition=useTransition();
   return (
     <main>
