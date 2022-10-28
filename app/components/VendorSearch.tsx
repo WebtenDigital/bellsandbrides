@@ -16,7 +16,7 @@ export default function VendorSearch() {
   return (
     <main>
         <div className="relative w-full flex">
-                <button onClick={()=>{handleClick()}} className="block w-full px-4 flex justify-between items-center bg-white rounded-l-lg">
+                <button onClick={()=>{handleClick()}} className="block w-full px-4 flex justify-between items-center bg-white rounded-l-lg shadow-lg">
                   <p className="text-sm text-gray-600 font-medium lg:text-base">{chosencategory}</p>
                   <div>
                     {showdropdown?

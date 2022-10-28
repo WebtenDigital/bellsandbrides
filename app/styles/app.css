@@ -884,10 +884,6 @@ body {
   margin-bottom: 2.5rem;
 }
 
-.ml-20{
-  margin-left: 5rem;
-}
-
 .block{
   display: block;
 }
@@ -1492,6 +1488,11 @@ body {
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
 
+.bg-green-200{
+  --tw-bg-opacity: 1;
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-20{
   --tw-bg-opacity: 0.2;
 }
@@ -1699,6 +1700,10 @@ body {
   padding-top: 2.5rem;
 }
 
+.pb-4{
+  padding-bottom: 1rem;
+}
+
 .pt-6{
   padding-top: 1.5rem;
 }
@@ -1709,10 +1714,6 @@ body {
 
 .pt-3{
   padding-top: 0.75rem;
-}
-
-.pb-4{
-  padding-bottom: 1rem;
 }
 
 .pb-6{
@@ -2143,6 +2144,11 @@ body {
     margin-right: auto;
   }
 
+  .lg\:mx-0{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
   .lg\:mt-0{
     margin-top: 0px;
   }
@@ -2259,6 +2265,10 @@ body {
     width: 1.5rem;
   }
 
+  .lg\:w-7\/12{
+    width: 58.333333%;
+  }
+
   .lg\:w-11\/12{
     width: 91.666667%;
   }
@@ -2269,10 +2279,6 @@ body {
 
   .lg\:w-96{
     width: 24rem;
-  }
-
-  .lg\:w-7\/12{
-    width: 58.333333%;
   }
 
   .lg\:w-16{
@@ -2311,12 +2317,12 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .lg\:grid-cols-2{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .lg\:grid-cols-4{
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-2{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lg\:items-start{
@@ -2339,16 +2345,16 @@ body {
     justify-content: space-between;
   }
 
+  .lg\:gap-5{
+    gap: 1.25rem;
+  }
+
   .lg\:gap-8{
     gap: 2rem;
   }
 
   .lg\:gap-4{
     gap: 1rem;
-  }
-
-  .lg\:gap-5{
-    gap: 1.25rem;
   }
 
   .lg\:gap-x-8{
@@ -2384,6 +2390,11 @@ body {
   .lg\:gap-x-2{
     -moz-column-gap: 0.5rem;
          column-gap: 0.5rem;
+  }
+
+  .lg\:gap-x-10{
+    -moz-column-gap: 2.5rem;
+         column-gap: 2.5rem;
   }
 
   .lg\:rounded-4xl{
@@ -2438,6 +2449,16 @@ body {
     padding-bottom: 1.25rem;
   }
 
+  .lg\:py-12{
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .lg\:py-4{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
   .lg\:py-8{
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -2458,11 +2479,6 @@ body {
     padding-bottom: 1.5rem;
   }
 
-  .lg\:py-12{
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-
   .lg\:py-20{
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -2476,11 +2492,6 @@ body {
   .lg\:py-24{
     padding-top: 6rem;
     padding-bottom: 6rem;
-  }
-
-  .lg\:py-4{
-    padding-top: 1rem;
-    padding-bottom: 1rem;
   }
 
   .lg\:px-10{

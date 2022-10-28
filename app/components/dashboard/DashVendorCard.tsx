@@ -46,7 +46,7 @@ export default function DashVendorCard(props:VendorProps) {
         </div>}
 
         {/* NEW DESIGN */}
-        <div className="w-9/12">
+        <div className="lg:w-full">
           <div id="image"><Link to={`/vendor/${props.slug}`}><img src={dashimages.venue} className="h-20 w-full object-cover object-top rounded-2xl shadow-xl"/></Link></div>
           {/* <Spacer gapsize="1"/> */}
           <div className="mt-1 px-3 py-2 bg-gray-50 rounded-xl shadow-xl">

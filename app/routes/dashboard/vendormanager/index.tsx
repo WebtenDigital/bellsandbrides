@@ -95,7 +95,7 @@ export default function VendorIndex() {
       <main className="lg:hidden">
         <div className="lg:py-12">
             <div className="lg:flex lg:items-center lg:justify-between">
-              <div className="lg:w-4/12"><Heading type="main" text="Vendor Manager"/></div>
+              <div className="lg:w-4/12"><Heading type="hero" text="Vendor Manager"/></div>
               <div className="lg:hidden"><Spacer gapsize="2"/></div>
               <div className="hidden lg:block lg:w-7/12"><VendorSearchNoIcons/></div>
               <div className="lg:hidden"><VendorSearch/></div>

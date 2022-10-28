@@ -6,8 +6,9 @@ import DashboardLayout from "~/components/dashboard/DashboardLayout"
 import DashVendorCard from "~/components/dashboard/DashVendorCard"
 import Heading from "~/components/dashboard/Heading"
 import Sentence from "~/components/dashboard/Sentence"
-import VendorSearch from "~/components/dashboard/VendorSearchByName"
+import VendorSearchNoIcons from "~/components/dashboard/VendorSearchNoIcons"
 import Spacer from "~/components/Spacer"
+import VendorSearch from "~/components/VendorSearch"
 import { dashboardvendormenu, dashmenucategories, mainvendormenu } from "~/utils/allmenus"
 import { db } from "~/utils/db.server"
 import { storage } from "~/utils/session"
@@ -94,22 +95,19 @@ export default function DynamicCategory() {
     const currentuser=loaderdata.data.currentuser;
 
     const maincontent=<div>
-
-    </div>
-
-  return (
-    <main>
-        {/* mobile */}
-        <section id="mobile" className="lg:hidden">
-            <CategoryMenu for="DashVendors" heading="Registry Options"/>
+        <section id="mobile" className="">
+            <div className="lg:hidden"><CategoryMenu for="DashVendors" heading="Registry Options"/></div>
             <Spacer gapsize="1"/>
-            <div className="bg-white shadow-xl rounded-lg">
-                <div className="w-11/12 mx-auto pt-4 pb-8">
-                    <Heading type="main" text={loaderdata?loaderdata.data.category:""}/>
-                    <div className="py-2 pl-2"><Sentence text="Still looking around?"/></div>
-                    <VendorSearch/>
+            <div className="bg-white shadow-xl rounded-lg lg:shadow-none">
+                <div className="w-11/12 mx-auto pt-4 pb-8 lg:w-10/12 lg:mx-0">
+                    <div className="capitalize"><Heading type="hero" text={loaderdata&&loaderdata.data.category.toLowerCase()==='dj'?"DJ":loaderdata.data.category.toLowerCase()==='mc'?"MC":loaderdata.data.category}/></div>
+                    <div className="lg:py-8 lg:flex lg:items-center lg:justify-between lg:gap-x-10">
+                        <div className="py-2 lg:w-4/12 lg:px-0 lg:py-0"><Sentence text="Still looking around?"/></div>
+                        <div className="lg:hidden"><VendorSearch/></div>
+                        <div className="hidden lg:block lg:w-full"><VendorSearchNoIcons/></div>
+                    </div>
                     <Spacer gapsize="3"/>
-                    <div>
+                    <div className="lg:grid lg:grid-cols-2 lg:gap-x-8">
                         {
                             heartedVendors.map(vendor=>{
                                 // const likedstatus=userVendors.map(uservendor=>uservendor.vendor_id).includes(vendor.id);
@@ -123,10 +121,18 @@ export default function DynamicCategory() {
                 </div>
             </div>
         </section>
+    </div>
+
+  return (
+    <main>
+        {/* mobile */}
+            <div className="lg:hidden">{
+                maincontent
+            }</div>
 
         {/* lg */}
         <section>
-            <div className="hidden lg:block pt-2 w-11/12 mx-auto"><DashboardLayout menuheading="Categories" ceremony={currentuser.ceremony?currentuser.ceremony:""} leftmenuarray={dashmenucategories} maincontent={maincontent} title={loaderdata.data.category}/></div>
+            <div className="hidden lg:block pt-2 w-11/12 mx-auto"><DashboardLayout menuheading="Categories" ceremony={currentuser.ceremony?currentuser.ceremony:""} leftmenuarray={dashmenucategories} maincontent={maincontent}/></div>
         </section>
     </main>
   )
