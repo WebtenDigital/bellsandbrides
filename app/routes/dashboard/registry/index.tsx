@@ -1,6 +1,6 @@
 import { registry_store } from "@prisma/client";
 import { ActionFunction, json, LoaderFunction, redirect } from "@remix-run/node";
-import { useActionData, useLoaderData, useTransition } from "@remix-run/react";
+import { Link, useActionData, useLoaderData, useTransition } from "@remix-run/react";
 import { useState } from "react";
 import CategoryMenu from "~/components/dashboard/CategoryMenu";
 import CTA from "~/components/dashboard/CTA";
@@ -167,58 +167,64 @@ export default function RegistryOverview() {
         </div>
         <Spacer gapsize="4"/>
         <Heading type="sub" text="quick registry guide"/>
-        <div id="the guide cards">
+        <div id="the guide cards" className="lg:grid lg:grid-cols-2 lg:gap-x-10">
           {
             registryguideitems.map(item=>{
               return (
-                <div className="pb-4"><RegistryGuideCard showcard={item.showcard} icon={item.icon} title={item.title} description={item.description} url={item.url}/></div>
+                <div className="pb-4 lg:py-5"><RegistryGuideCard showcard={item.showcard} icon={item.icon} title={item.title} description={item.description} url={item.url}/></div>
               )
             })
           }
         </div>
 
         {/* categories - gifts and cash funds */}
-        <div className="pt-4 pb-10">
+        <div className="pt-4 pb-10 lg:py-16">
           <Heading type="sub" text="categories"/>
           <Spacer gapsize="2"/>
-          {
-            [
-              {
-                title: "gifts",
-                description: 'From kitchenware, to bathroom essentials, add the things you will need to (officially) start your life together.',
-                imageurl: dashimages.kitchenware,
-                linkurl: '/shop'
-              },
-              {
-                title: "cash fund",
-                description: 'Have some adventures on your bucketlist? Let your guests know by adding them to your registry.',
-                imageurl: dashimages.venue,
-                linkurl: '/honeymoon'
-              }
-            ].map(item=>{
-              return (
-                <div className="w-9/12 mb-10">
-                  <h2 className="text-sm text-gray-500 font-bold capitalize">{item.title}</h2>                  
-                  <Spacer gapsize="1"/>
-                  <div className=""><img src={item.imageurl} alt={item.title} className="h-40 w-full object-cover rounded-3xl shadow-xl"/></div>
-                  <p className="py-4 text-justify"><Sentence text={item.description}/></p>
-                  <CTA type="filledwitharrow" url={item.linkurl} text={"Get Started"} />
-                </div>
-              )
-            })
-          }
+          <div className="lg:flex lg:justify-between lg:items-center lg:gap-x-12">
+            {
+              [
+                {
+                  title: "gifts",
+                  description: 'From kitchenware, to bathroom essentials, add the things you will need to (officially) start your life together.',
+                  imageurl: dashimages.kitchenware,
+                  linkurl: '/shop'
+                },
+                {
+                  title: "cash fund",
+                  description: 'Do you have some adventures on your bucketlist? Let your guests know by adding them to your registry.',
+                  imageurl: dashimages.venue,
+                  linkurl: '/honeymoon'
+                }
+              ].map(item=>{
+                return (
+                  <div className="w-9/12 mb-10">
+                    <h2 className="text-sm text-gray-500 font-bold capitalize lg:py-2 lg:text-base">{item.title}</h2>                  
+                    <Spacer gapsize="1"/>
+                    <div className=""><img src={item.imageurl} alt={item.title} className="h-40 w-full object-cover rounded-3xl shadow-xl"/></div>
+                    <p className="py-4 text-justify"><Sentence text={item.description}/></p>
+                    <CTA type="filledwitharrow" url={item.linkurl} text={"Get Started"} />
+                  </div>
+                )
+              })
+            }
+          </div>
         </div>
 
           {/* see checklist */}
-          <Heading type="sub" text="see our checklist"/>
-          <div className="py-2 text-justify"><Sentence text="Looking for ideas on what to add to your registry? See our checklist for the items we recommend."/></div>
-          <CTA type="emptywitharrownoborder" url="/dashboard/registry/checklist" text="See Checklist"/>
-
+          <div className="py-8 border-b border-t border-gray-100">
+            <Heading type="sub" text="see our checklist"/>
+            <div className="py-2 text-justify"><Sentence text="Looking for ideas on what to add to your registry? See our checklist for the items we recommend."/></div>
+            <div className="flex justify-end"><CTA type="emptywitharrownoborder" url="/dashboard/registry/checklist" text="See Checklist"/></div>
+          </div>
           {/* manage your registry */}
-          <div className="my-10 pt-4 pb-8 bg-[#F1B2D8] rounded-xl">
-            <h2 className="text-gray-600 text-center font-bold">Manage Your Registry</h2>
-            <div className="w-10/12 mx-auto pt-3 pb-6 text-center"><Sentence text="See who has bought you a gift from your registry, set where you want it to be sent, convert your gifts to store credit and more."/></div>
-            <div className="flex justify-center"><CTA type="empty" text="Manage Registry" url="/dashboard/registry/manage" bordercolor="peach"/></div>
+          <div className="my-10 pt-4 pb-8 bg-[#FFE9F6] rounded-xl lg:py-10">
+            <div className="lg:w-10/12 mx-auto">
+              <h2 className="text-gray-600 text-center font-bold lg:text-left">Manage Your Registry</h2>
+              <div className="w-10/12 mx-auto pt-3 pb-6 text-center lg:text-left lg:w-full"><Sentence text="See who has bought you a gift from your registry, set where you want it to be sent, convert your gifts to store credit and more."/></div>
+              {/* <div className="flex justify-center"><CTA type="empty" text="Manage Registry" url="/dashboard/registry/manage" bordercolor="peach" bgcolor=""/></div> */}
+              <div className="w-10/12 mx-auto lg:w-6/12 lg:mx-0"><Link to="/dashboard/registry/manage"><div className="px-4 py-2 text-center text-sm text-white lg:text-base bg-[#FF88D0] rounded-xl">Manage Registry</div></Link></div>
+            </div>
           </div>
 
           {/* personalized recommendations */}
@@ -227,16 +233,18 @@ export default function RegistryOverview() {
             transition.submission&&<div className="w-7/12 mx-auto py-4 px-4 inset-x-0 bg-green-500 text-sm text-white text-center font-semibold shadow-xl z-10">{actiondata?.data.message?actiondata.data.message:`Adding to Registry...`}</div>
           }
 
-          <div className="pt-10">
-            <Heading type="sub" text="Personalized Recommendations"/>
+          <div className="pt-10 lg:py-16">
+            <div className="lg:py-2"><Heading type="sub" text="Personalized Recommendations"/></div>
             <Spacer gapsize="1"/>
-            {
-              featuredregistryitems.map(item=>{
-                return (
-                  <div className="py-2"><RegistryItemCard id={item.id} imageurl={item.item_image?item.item_image:""} name={item.item_name?item.item_name:""} category={item.item_category?item.item_category:""} price={item.item_price?item.item_price:0}/></div>
-                )
-              })
-            }
+            <div className="lg:grid lg:grid-cols-2 lg:gap-x-8">
+              {
+                featuredregistryitems.map(item=>{
+                  return (
+                    <div className="py-2"><RegistryItemCard id={item.id} imageurl={item.item_image?item.item_image:""} name={item.item_name?item.item_name:""} category={item.item_category?item.item_category:""} price={item.item_price?item.item_price:0}/></div>
+                  )
+                })
+              }
+            </div>
           </div>
         </section>
     </main>

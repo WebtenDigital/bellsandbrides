@@ -20,7 +20,7 @@ export default function FormField(props:FormFieldProps){
     const [inputtype, setInputType]=useState('password');
 
     return (
-        <div className="relative">            
+        <div className="relative lg:w-full" >            
             {props.type==="password"?
             <div>
                 <input value={props.value} type={inputtype} name={props.name} placeholder={props.placeholder} required={props.required} pattern={props.pattern} className={"pl-2 py-2 w-full text-sm border border-gray-300 rounded-xl focus:outline-none focus:invalid:border-red-400 focus:invalid:bg-red-50 "+ props.className}/>

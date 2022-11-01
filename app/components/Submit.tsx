@@ -9,7 +9,7 @@ type SubmitProps={
 }
 export default function Submit(props:SubmitProps) {
   return (
-    <button type="submit" className="px-4 py-2 text-sm text-white font-medium bg-peach rounded-2xl">{props.submission?
+    <button type="submit" className="px-4 py-2 text-sm text-white font-medium bg-peach rounded-2xl lg:text-base">{props.submission?
       <div className='flex items-center gap-4 font-semibold'>
         <SuperSpinner outercolor="white" innercolor="peach"/>
         <p>{props.transitiontext}</p>

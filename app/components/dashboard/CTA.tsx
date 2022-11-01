@@ -42,7 +42,7 @@ function setCallToAction(ctatype:"fillednoarrow"|"emptywitharrownoborder"|"fille
         )
         case "filledwitharrow":
             return (
-                <Link to={url} className={`px-4 py-1 flex gap-2 items-center justify-between text-sm text-peach text-white font-medium border bg-${bgcolor?bgcolor:"peach"} rounded-2xl`}>
+                <Link to={url} className={`px-4 py-2 flex gap-2 items-center justify-between text-sm text-peach text-white font-medium border bg-${bgcolor?bgcolor:"peach"} rounded-2xl lg:py-2 lg:rounded-2xl lg:hover:shadow-lg lg:hover:bg-pink-400`}>
                     {text}
                     <div id="arrow">
                         <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

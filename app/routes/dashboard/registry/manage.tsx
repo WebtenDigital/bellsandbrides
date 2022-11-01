@@ -70,18 +70,23 @@ export default function ManageRegistry() {
 
   return (
     <main className="w-11/12 mx-auto">
-        <Heading type="main" text="Manage Registry"/>
+        <div className="lg:py-4"><Heading type="main" text="Manage Registry"/></div>
 
         {
             transition.submission&&<div className="w-7/12 mx-auto py-4 px-4 fixed inset-x-0 bg-red-500 text-sm text-white text-center font-semibold shadow-xl z-10 ">{`Removing...`}</div>
         }
 
         {/* selected items */}
-        <div className="pt-4 pb-20">
+        <div className="pt-4 pb-20 ">
             {
-                selectedregistryitems.length?selectedregistryitems.map(item=>{
-                    return <div className="py-2"><RegistryManagementCard id={item.id} imageurl={item.item_image?item.item_image:""} name={item.item_name} category={item.item_category} price={item.item_price}/></div>
-                })
+                selectedregistryitems.length?
+                <div className="lg:grid lg:grid-cols-2 lg:gap-x-6">
+                    {
+                        selectedregistryitems.map(item=>{
+                            return <div className="py-2"><RegistryManagementCard id={item.id} imageurl={item.item_image?item.item_image:""} name={item.item_name} category={item.item_category} price={item.item_price}/></div>
+                        })
+                    }
+                </div>
                 :
                 <div className="w-9/12 mx-auto">
                     <div className="w-9/12 mx-auto"><img src={dashimages.box} alt="empty box"/></div>

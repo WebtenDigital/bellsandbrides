@@ -276,7 +276,7 @@ export default function DashboardIndex() {
                     <div className="pt-2 pb-10"><Sentence text="Discover and contact the best local experts for your special day."/></div>
                     <div>
                         <div id="holder" className="relative mt-10 pt-28 pb-6 bg-gray-100 border border-gray-200 rounded-xl shadow-xl lg:w-10/12">
-                            <div id="cards" className="absolute -top-10 left-3 flex gap-4 lg:flex lg:gap-x-8 lg:left-12">
+                            <div id="cards" className="absolute -top-10 left-3 flex gap-4 lg:flex lg:gap-x-8">
                                 {
                                     vendordashcards.map(dashcarditem=>{
                                         return (

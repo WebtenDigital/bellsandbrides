@@ -119,25 +119,25 @@ function settingsInput(name:string, placeholder?:string, type?: string, minLengt
 }
 
   return (
-    <main className="w-11/12 mx-auto pb-20">
+    <main className="w-11/12 mx-auto pb-20 lg:pt-4 lg:w-7/12 lg:mx-0">
         <Heading type="main" text="Registry Settings"/>
         <Spacer gapsize="2"/>
     
         <Form method="post">
           {/* welcome message */}
-          <Heading type="sub" text="Registry welcome message"/>
-          <div className="py-2"><Sentence text="A custom welcome message for your guests when they visit your registry."/></div>
-          <textarea className="w-full py-2 px-2 text-sm border border-gray-200 rounded-xl placeholder:text-sm placeholder:text-gray-300 focus:outline-none" name="welcome_message" rows={5} placeholder={user.registry_welcome_message?.length?user.registry_welcome_message:"Type welcome message here..."}/>
+          <div className="lg:py-2"><Heading type="sub" text="Registry welcome message"/></div>
+          <div className="lg:py-4"><Sentence text="A custom welcome message for your guests when they visit your registry."/></div>
+          <textarea className="w-full py-2 px-2 text-sm border border-gray-200 rounded-xl placeholder:text-sm placeholder:text-gray-300 focus:outline-none lg:placeholder:text-base" name="welcome_message" rows={5} placeholder={user.registry_welcome_message?.length?user.registry_welcome_message:"Type welcome message here..."}/>
           <Spacer gapsize="4"/>
           
           {/* registry link */}
           <div id="registry-link">
             <Heading type="sub" text="Your registry link"/>
-            <div className="py-2"><Sentence text="This is the link that you will share with your guests to visit and see your registry."/></div>
+            <div className="py-2 lg:py-4"><Sentence text="This is the link that you will share with your guests to visit and see your registry."/></div>
             <div>
-              <p className="px-2 py-2 text-xs text-gray-300 border border-gray-300 rounded-xl">{loaderdata.data.userreglink}</p>
+              <p className="px-2 py-2 text-xs text-gray-300 border border-gray-300 rounded-xl lg:px-3 lg:text-sm">{loaderdata.data.userreglink}</p>
               <Spacer gapsize="1"/>
-              <div className="flex justify-end"><button type="button" onClick={async()=>{await copyTextToClipboard(loaderdata.data.userreglink)}} className="px-2 py-1 text-sm text-peach font-semibold border border-red-400 rounded-xl">{copied?`Copied!`:`Copy Link`}</button></div>
+              <div className="flex justify-end"><button type="button" onClick={async()=>{await copyTextToClipboard(loaderdata.data.userreglink)}} className="px-2 py-1 text-sm text-peach font-semibold border border-red-400 rounded-xl lg:py-2 lg:px-4 lg:text-base">{copied?`Copied!`:`Copy Link`}</button></div>
             </div>
           </div>
 
@@ -155,7 +155,7 @@ function settingsInput(name:string, placeholder?:string, type?: string, minLengt
             <Spacer gapsize="2"/>
 
             {/* apt / building */}
-            <div className="py-4 flex items-center gap-2">
+            <div className="py-4 flex items-center gap-2 lg:w-full">
               <div>
                 <Sentence text="Apartment / Building"/>
                 <Spacer gapsize="1"/>
@@ -169,7 +169,7 @@ function settingsInput(name:string, placeholder?:string, type?: string, minLengt
             </div>
             {/* additional info */}
             <div className="py-2"><Sentence text="Additional Location Information"/></div>
-            <textarea name="additional_location_info" className="w-full py-2 px-2 text-sm border border-gray-200 rounded-xl placeholder:text-sm placeholder:text-gray-300 focus:outline-none" rows={5} placeholder="Type info here..."/>
+            <textarea name="additional_location_info" className="w-full py-2 px-2 text-sm border border-gray-200 rounded-xl placeholder:text-sm placeholder:text-gray-300 focus:outline-none lg:placeholder:text-base" rows={5} placeholder="Type info here..."/>
             {/* phone number */}
             <div className="pt-4">
               <Sentence text="Phone Number"/>
@@ -179,8 +179,8 @@ function settingsInput(name:string, placeholder?:string, type?: string, minLengt
           </div>
 
           {/* save changes */}
-          <div className="pt-8 flex justify-end">
-            <button type="submit" className="px-4 py-2 text-sm text-white font-semibold bg-peach rounded-xl">{
+          <div className="pt-8 flex justify-end lg:pt-12">
+            <button type="submit" className="px-4 py-2 text-sm text-white font-semibold bg-peach rounded-xl lg:px-5 lg:text-base">{
               transition.submission?
               <div className="flex gap-2 items-center">
                 <p>Saving</p>

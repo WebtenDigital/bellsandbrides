@@ -214,10 +214,10 @@ export default function CeremonyDetails(){
   const transition=useTransition();
 
   return (
-    <main>
+    <main className='lg:w-7/12'>
         <div className='py-3'><Heading type='main' text={`Personal Information`}/></div>
         {/* progress bar */}
-        <div>
+        <div className='lg:py-4'>
           <Sentence text={`${availablepercentage}% Complete`}/>
           <ProgressBar progresspercentage={availablepercentage}/>
         </div>
@@ -225,10 +225,10 @@ export default function CeremonyDetails(){
         <fieldset>
           <Form method="post" noValidate>
             {/* User's Name */}
-            <div id="Your Name">
+            <div id="Your Name" className='lg:py-4'>
               <Label for='your-name' text='Your Name'/>
               <Spacer gapsize='1'/>
-              <div className='flex items-center gap-2'>
+              <div className='flex items-center gap-2 lg:w-full'>
                 <FormField id="your-name" type='text' name="firstname" placeholder={user.firstname?user.firstname:"First Name"}/>
                 <FormField type='text' name="lastname" placeholder={user.lastname?user.lastname:'Last Name'}/>
               </div>
@@ -276,7 +276,7 @@ export default function CeremonyDetails(){
             <Spacer gapsize='3'/>
 
             {/* Ceremony Date */}
-            <div id="date"><Label for="" text={`${loaderdata.data.user.ceremony} date`}/></div>
+            <div id="date" className='lg:py-4'><Label for="" text={`${loaderdata.data.user.ceremony} date`}/></div>
             <Spacer gapsize='1'/>
             <div className='flex items-center justify-between'>
               <div className='w-6/12'><FormField
@@ -294,7 +294,7 @@ export default function CeremonyDetails(){
             <Spacer gapsize='3'/>
 
             {/* Estimated Guests */}
-            <div id="guests" className='relative'>
+            <div id="guests" className='relative lg:py-4'>
               <Label for="estimated-guests" text='Estimated Number of Guests'/>
               <Spacer gapsize='1'/>
               <button onClick={()=>{setTierDrop(prevstate=>prevstate=!prevstate)}} type='button' className='w-8/12 px-3 py-2 flex items-center justify-between border border-gray-200 rounded-xl'>
@@ -344,7 +344,7 @@ export default function CeremonyDetails(){
 
             <Spacer gapsize='4'/>
 
-            <div className='flex justify-end'><Submit defaulttext='Save Changes' transitiontext="Saving..." submission={transition.submission}/></div>
+            <div className='flex justify-end lg:pt-8'><Submit defaulttext='Save Changes' transitiontext="Saving..." submission={transition.submission}/></div>
 
           </Form>
         </fieldset>

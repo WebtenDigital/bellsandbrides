@@ -32,12 +32,12 @@ function setImage(category:string){
 
 export default function Checklist() {
   return (
-    <main className="w-11/12 mx-auto">
+    <main className="w-11/12 mx-auto lg:pt-4">
         <Heading type="main" text="Checklist"/>
         <Spacer gapsize="1"/>
-        <Sentence text="Not sure what to add to your registry? Check out items from these categories."/>
+        <div className="lg:py-2"><Sentence text="Not sure what to add to your registry? Check out items from these categories."/></div>
         <Spacer gapsize="2"/>
-        <div className="pb-20 grid grid-cols-3 gap-x-2">
+        <div className="pb-20 grid grid-cols-3 gap-x-2 lg:grid lg:grid-cols-5 lg:gap-x-5">
             {
                 registrystoremenu.map(item=>{
                     return (
